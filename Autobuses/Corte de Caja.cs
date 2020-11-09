@@ -29,6 +29,7 @@ namespace Autobuses
         private int bcemitidos=0;
         private double biemitidos;
         private string contraseña = "";
+        private string pkcortecaja = "";
         private int bccancelado = 0;
         private double bicancelados = 0.0;
         private double bcventa;
@@ -158,46 +159,46 @@ namespace Autobuses
 
         }
 
-        private void fecha()
-        {
-            try
-
+            private void fecha()
             {
+                try
 
-                string sql = "SELECT TOP 1 FECHAC FROM VENDIDOS WHERE CORTE='0' AND STATUS='PREVENTA' AND NOT STATUS='BLOQUEADO' AND  VENDEDOR=@USUARIO ORDER BY FECHAC asc";
-                db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@USUARIO", usuarioconsulta);
-
-                res = db.getTable();
-
-                if (res.Next())
                 {
-                    fechai = res.Get("FECHAC");
-                    if (fechai.Length > 19)
+
+                    string sql = "SELECT TOP 1 FECHAC FROM VENDIDOS WHERE CORTE='0' AND  STATUS='VENDIDO'  AND  PK_USUARIO=@USUARIO ORDER BY FECHAC asc";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@USUARIO", LoginInfo.PkUsuario);
+
+                    res = db.getTable();
+
+                    if (res.Next())
                     {
-                        fechai = fechai.Substring(0, 19);
-                    }
+                        fechai = res.Get("FECHAC");
+                        if (fechai.Length > 19)
+                        {
+                            fechai = fechai.Substring(0, 19);
+                        }
 
-                    textBoxini.Text = fechai;
+                        textBoxini.Text = fechai;
                  
-                }
-                else
-                {
-                    fechai = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-                    textBoxini.Text = fechai;
+                    }
+                    else
+                    {
+                        fechai = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                        textBoxini.Text = fechai;
               
+                    }
+                }
+                catch (Exception err)
+                {
+                    string error = err.Message;
+                    MessageBox.Show("Ocurrio un Error, intente de nuevo.");
+                    string funcion = "fecha";
+                    Utilerias.LOG.write(_clase, funcion, error);
+
+
                 }
             }
-            catch (Exception err)
-            {
-                string error = err.Message;
-                MessageBox.Show("Ocurrio un Error, intente de nuevo.");
-                string funcion = "fecha";
-                Utilerias.LOG.write(_clase, funcion, error);
-
-
-            }
-        }
         public void boletosinfo()
         {
             try
@@ -205,9 +206,9 @@ namespace Autobuses
             {
 
                 string sql = "SELECT (sum(CAST(PRECIO as DECIMAL(9,2)))) as total, count(precio) as cantidad FROM VENDIDOS" +
-                    " WHERE  CORTE='0' AND VENDEDOR=@VENDEDOR AND (STATUS='VENDIDO' OR STATUS='CANCELADO')";
+                    " WHERE  CORTE='0' AND PK_USUARIO=@VENDEDOR AND (STATUS='VENDIDO' OR STATUS='CANCELADO')";
                 db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@VENDEDOR", usuarioconsulta);
+                db.command.Parameters.AddWithValue("@VENDEDOR", LoginInfo.PkUsuario);
                 int n = 0;
                 res = db.getTable();
 
@@ -241,9 +242,9 @@ namespace Autobuses
             {
 
                 string sql = "SELECT (sum(CAST(PRECIO as DECIMAL(9,2)))) as total, count(precio) as cantidad FROM VENDIDOS " +
-                    "WHERE CORTECANCELADO='0' AND CANCELADO=@VENDEDOR AND STATUS='CANCELADO'";
+                    "WHERE CORTECANCELADO='0' AND PK_USUARIO=@VENDEDOR AND STATUS='CANCELADO'";
                 db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@VENDEDOR", usuarioconsulta);
+                db.command.Parameters.AddWithValue("@VENDEDOR", LoginInfo.PkUsuario);
                 int n = 0;
                 res = db.getTable();
 
@@ -275,10 +276,10 @@ namespace Autobuses
             {
 
                 string sql = "SELECT (sum(CAST(PRECIO as DECIMAL(9,2)))) as total FROM VENDIDOS WHERE " +
-                    "CORTE='0' AND VENDEDOR=@VENDEDOR AND FORMADEPAGO='EFECTIVO' AND STATUS='VENDIDO'";
+                    "CORTE='0' AND PK_USUARIO=@VENDEDOR AND FORMADEPAGO='EFECTIVO' AND STATUS='VENDIDO'";
 
                 db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@VENDEDOR", usuarioconsulta);
+                db.command.Parameters.AddWithValue("@VENDEDOR", LoginInfo.PkUsuario);
                 int n = 0;
                 res = db.getTable();
 
@@ -310,10 +311,10 @@ namespace Autobuses
             {
 
                 string sql = "SELECT (sum(CAST(PRECIO as DECIMAL(9,2)))) as total FROM VENDIDOS WHERE " +
-                    "CORTE='0' AND VENDEDOR=@VENDEDOR AND FORMADEPAGO='T. DEBITO' AND STATUS='VENDIDO' ";
+                    "CORTE='0' AND PK_USUARIO=@VENDEDOR AND FORMADEPAGO='T. DEBITO' AND STATUS='VENDIDO' ";
 
                 db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@VENDEDOR", usuarioconsulta);
+                db.command.Parameters.AddWithValue("@VENDEDOR", LoginInfo.PkUsuario);
                 int n = 0;
                 res = db.getTable();
 
@@ -344,10 +345,10 @@ namespace Autobuses
             {
 
                 string sql = "SELECT (sum(CAST(PRECIO as DECIMAL(9,2)))) as total FROM VENDIDOS WHERE " +
-                    "CORTE='0' AND VENDEDOR=@VENDEDOR AND FORMADEPAGO='T. CREDITO' AND STATUS='VENDIDO'";
+                    "CORTE='0' AND PK_USUARIO=@VENDEDOR AND FORMADEPAGO='T. CREDITO' AND STATUS='VENDIDO'";
 
                 db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@VENDEDOR", usuarioconsulta);
+                db.command.Parameters.AddWithValue("@VENDEDOR", LoginInfo.PkUsuario);
                 int n = 0;
                 res = db.getTable();
 
@@ -392,9 +393,9 @@ namespace Autobuses
 "sum(CAST(TTURNO as DECIMAL(9, 2))) as TTURNO, " +
 "sum(CAST(TPASO as DECIMAL(9, 2))) as TPASO " +
 "FROM GUIA " +
-"WHERE CORTE =0 AND VALIDADOR=@VALIDADOR";
+"WHERE CORTE =0 AND PKUSUARIO=@VALIDADOR";
                 db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@VALIDADOR", usuarioconsulta);
+                db.command.Parameters.AddWithValue("@VALIDADOR", LoginInfo.PkUsuario);
 
 
 
@@ -855,13 +856,8 @@ namespace Autobuses
                 db.command.Parameters.AddWithValue("@CVALES", 0);
 
 
-                if (db.execute())
-                    {
-                    Form mensaje = new Mensaje("Corte Realizado", true);
-
-                    mensaje.ShowDialog();
-                }
-              
+                pkcortecaja = db.executeId();
+             
 
                 
 
@@ -891,18 +887,24 @@ namespace Autobuses
                 {
 
                     bool huella = verificationUserControl1.verificando();
-                   if (huella == true)
-                
-                    {
+                    //if (huella == true)
+
+                    // {
+                    //     corte();
+
+                    // }
+                    // else
+                    // {
+                    //     Form mensaje = new Mensaje("Verifique la huella", true);
+
+                    //     mensaje.ShowDialog();
+                    // }
+
+                  
                         corte();
 
-                    }
-                    else
-                    {
-                        Form mensaje = new Mensaje("Verifique la huella", true);
-
-                        mensaje.ShowDialog();
-                    }
+                    
+              
                 }
             }
 
@@ -1155,66 +1157,83 @@ namespace Autobuses
         private void corte()
         {
             folio = GenerateRandom();
-
-            Utilerias.LOG.acciones("genero corte de caja " + folio);
-
-            string sql = "UPDATE VENDIDOS SET CORTE=@CORTE WHERE CORTE=0 AND VENDEDOR=@VALIDADOR AND NOT STATUS='PREVENTA' AND NOT STATUS='BLOQUEADO' ";
-
-
-            db.PreparedSQL(sql);
-            db.command.Parameters.AddWithValue("@CORTE", 1);
-
-            db.command.Parameters.AddWithValue("@VALIDADOR", usuarioconsulta);
-
-
-            db.execute();
-            string sql3 = "UPDATE VENDIDOS SET CORTECANCELADO=@CORTECANCELADO WHERE CORTECANCELADO=0 AND CANCELADO=@VALIDADOR";
-
-
-            db.PreparedSQL(sql3);
-            db.command.Parameters.AddWithValue("@CORTECANCELADO", 1);
-
-            db.command.Parameters.AddWithValue("@VALIDADOR", usuarioconsulta);
-
-
-            db.execute();
-
-            string sql2 = "UPDATE GUIA SET CORTE=@CORTE WHERE CORTE=0 AND VALIDADOR=@VALIDADOR";
-
-
-            db.PreparedSQL(sql2);
-            db.command.Parameters.AddWithValue("@CORTE", 1);
-            db.command.Parameters.AddWithValue("@VALIDADOR", usuarioconsulta);
-
-
-            db.execute();
-
-
-            tamaño = 1000;
-
-            PrintDocument pd = new PrintDocument();
-            pd.PrintPage += new PrintPageEventHandler(llenarticket);
-            PaperSize ps = new PaperSize("", 420, tamaño);
-
-            pd.PrintController = new StandardPrintController();
-
-            pd.DefaultPageSettings.Margins.Left = 0;
-            pd.DefaultPageSettings.Margins.Right = 0;
-            pd.DefaultPageSettings.Margins.Top = 0;
-            pd.DefaultPageSettings.Margins.Bottom = 0;
-            pd.DefaultPageSettings.PaperSize = ps;
-            pd.PrinterSettings.PrinterName = Settings1.Default.impresora;
             subir();
+            if (!string.IsNullOrEmpty(pkcortecaja))
+            {
 
-            pd.Print();
-            CrearTicket ticket0 = new CrearTicket();
-            ticket0.TextoIzquierda("");
-            ticket0.TextoIzquierda("");
-            ticket0.TextoIzquierda("");
-            ticket0.TextoIzquierda("");
-            ticket0.CortaTicket();
-            ticket0.ImprimirTicket(Settings1.Default.impresora);
-            this.Close();
+
+                Utilerias.LOG.acciones("genero corte de caja " + folio);
+
+                string sql = "UPDATE VENDIDOS SET CORTE=@CORTE,PKCORTE=@PKCORTE WHERE CORTE=0 AND PK_USUARIO=@VALIDADOR AND NOT STATUS='PREVENTA' AND NOT STATUS='BLOQUEADO' ";
+
+
+                db.PreparedSQL(sql);
+                db.command.Parameters.AddWithValue("@CORTE", 1);
+                db.command.Parameters.AddWithValue("@PKCORTE", pkcortecaja);
+
+                db.command.Parameters.AddWithValue("@VALIDADOR", LoginInfo.PkUsuario);
+
+
+                db.execute();
+                string sql3 = "UPDATE VENDIDOS SET CORTECANCELADO=@CORTECANCELADO WHERE CORTECANCELADO=0 AND PK_USUARIO=@VALIDADOR";
+
+
+                db.PreparedSQL(sql3);
+                db.command.Parameters.AddWithValue("@CORTECANCELADO", 1);
+
+                db.command.Parameters.AddWithValue("@VALIDADOR", LoginInfo.PkUsuario);
+
+
+                db.execute();
+
+                string sql2 = "UPDATE GUIA SET CORTE=@CORTE, PKCORTECAJA=@PKCORTE WHERE CORTE=0 and PKUSUARIO=@VALIDADOR";
+
+
+                db.PreparedSQL(sql2);
+                db.command.Parameters.AddWithValue("@CORTE", 1);
+                db.command.Parameters.AddWithValue("@PKCORTE", pkcortecaja);
+                db.command.Parameters.AddWithValue("@VALIDADOR", LoginInfo.PkUsuario);
+
+
+                db.execute();
+
+
+                tamaño = 1000;
+
+                PrintDocument pd = new PrintDocument();
+                pd.PrintPage += new PrintPageEventHandler(llenarticket);
+                PaperSize ps = new PaperSize("", 420, tamaño);
+
+                pd.PrintController = new StandardPrintController();
+
+                pd.DefaultPageSettings.Margins.Left = 0;
+                pd.DefaultPageSettings.Margins.Right = 0;
+                pd.DefaultPageSettings.Margins.Top = 0;
+                pd.DefaultPageSettings.Margins.Bottom = 0;
+                pd.DefaultPageSettings.PaperSize = ps;
+                pd.PrinterSettings.PrinterName = Settings1.Default.impresora;
+
+                pd.Print();
+                CrearTicket ticket0 = new CrearTicket();
+                ticket0.TextoIzquierda("");
+                ticket0.TextoIzquierda("");
+                ticket0.TextoIzquierda("");
+                ticket0.TextoIzquierda("");
+                ticket0.CortaTicket();
+                ticket0.ImprimirTicket(Settings1.Default.impresora);
+                
+                    Form mensaje = new Mensaje("Corte Realizado", true);
+
+                    mensaje.ShowDialog();
+                
+
+                this.Close();
+            }
+            else{
+                Form mensaje = new Mensaje("No se pudo realizar el corte", true);
+
+                mensaje.ShowDialog();
+            }
         }
         private void button1_Click_1(object sender, EventArgs e)
         {

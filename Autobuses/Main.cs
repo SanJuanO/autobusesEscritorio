@@ -68,6 +68,9 @@ namespace Autobuses
                     comboimpresora.DropDownStyle = ComboBoxStyle.DropDownList;
                     panelplaneacion.Visible = false;
                     panelreportes.Visible = false;
+                    panelcortedeguias.Visible = false;
+                    panelpagoguia.Visible = false;
+
                     panelconfiguracion.Visible = false;
                     labelsucursal.Text = LoginInfo.Sucursal;
 
@@ -282,16 +285,27 @@ namespace Autobuses
                 rcortedecaja.Visible = false;
                 rtarjetas.Visible = false;
                 rprecios.Visible = false;
-
+                panelpagoguia.Visible = false;
                 taquilla.Visible = false;
                 cortecaja.Visible = false;
-                cambioautobus.Visible = false;
+                cambioautobus.Visible = false; 
+                panelcortedeguias.Visible = false;
 
                 rpagos.Visible = false;
                 pagarguia.Visible = false;
 
                 reporterutas.Visible = false;
                 reportehorarios.Visible = false;
+                if (LoginInfo.privilegios.Any(x => x == "reportecorteguia"))
+                {
+                    panelpagoguia.Visible = true;
+
+                }
+                if (LoginInfo.privilegios.Any(x => x == "corteguias"))
+                {
+                    panelcortedeguias.Visible=true;
+
+                }
                 if (LoginInfo.privilegios.Any(x => x == "Pagar Guias"))
                 {
                     mostrar = true;
@@ -1797,6 +1811,53 @@ namespace Autobuses
                 //form.Dock = DockStyle.Fill;
                 form.Show();
                 Utilerias.LOG.acciones("ingresar a ReporteRolado");
+
+            }
+        }
+
+        private void pictureBox21_Click(object sender, EventArgs e)
+        {
+
+            checkInternetAvaible();
+            if (CheckOpened("CorteGuia"))
+            {
+                form.WindowState = FormWindowState.Maximized;
+                // form.Dock = DockStyle.Fill;
+                form.Show();
+                form.Focus();
+
+            }
+            else
+            {
+                form = new CorteGuia();
+                //form.MdiParent = this;
+                form.WindowState = FormWindowState.Maximized;
+                //form.Dock = DockStyle.Fill;
+                form.Show();
+                Utilerias.LOG.acciones("ingresar a CorteGuia");
+
+            }
+        }
+
+        private void pictureBox25_Click(object sender, EventArgs e)
+        {
+            checkInternetAvaible();
+            if (CheckOpened("CorteGuia"))
+            {
+                form.WindowState = FormWindowState.Maximized;
+                // form.Dock = DockStyle.Fill;
+                form.Show();
+                form.Focus();
+
+            }
+            else
+            {
+                form = new Reportecorteguias();
+                //form.MdiParent = this;
+                form.WindowState = FormWindowState.Maximized;
+                //form.Dock = DockStyle.Fill;
+                form.Show();
+                Utilerias.LOG.acciones("ingresar a Reporte corte de guias");
 
             }
         }

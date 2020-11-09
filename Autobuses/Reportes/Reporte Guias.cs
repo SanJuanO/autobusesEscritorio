@@ -129,7 +129,8 @@ using System.Text;
                     {
                  
                         pk_guia = (string)dataGridViewguias.Rows[n].Cells[27].Value;
-                        iradetalle();
+
+                    iradetalle();
                     }
                 
                 }

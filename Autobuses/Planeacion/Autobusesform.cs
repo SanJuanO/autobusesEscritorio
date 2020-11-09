@@ -1061,6 +1061,7 @@ namespace Autobuses.Planeacion
                 progressBar1.Value = 20;
                 if (ValidarInputs())
                 {
+                    if (validarecoactualizar()) { 
                     progressBar1.Value = 40;
 
                     string sql = "UPDATE AUTOBUSES SET LINEA_PK=@LINEA, SOCIO_PK=@SOCIO," +
@@ -1103,6 +1104,15 @@ namespace Autobuses.Planeacion
                     progressBar1.Hide();
 
                 }
+                    else
+                    {
+                        Form mensaje = new Mensaje("El eco no se puede repetir", true);
+
+                        mensaje.ShowDialog();
+                        progressBar1.Value = 0;
+                        progressBar1.Hide();
+                    }
+            }
             }
             catch (Exception ex) {
                 if (!Utilerias.Utilerias.CheckForInternetConnection()) {
@@ -1130,50 +1140,127 @@ namespace Autobuses.Planeacion
 
         }
 
+        private bool validareco()
+        {
+            
+    string sql3 = "SELECT count(*) as cantidad FROM autobuses WHERE BORRADO = 0 AND ECO=@ECO";
+            db.PreparedSQL(sql3);
+            db.command.Parameters.AddWithValue("@ECO", _eco);
+
+            res = db.getTable();
+
+            if (res.Next())
+            {
+            string cantidad= res.Get("cantidad");
+
+                if (cantidad == "0")
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
+            else
+            {
+                return false;
+
+            }
+
+        }
+
+        private bool validarecoactualizar()
+        {
+
+            string sql3 = "SELECT count(*) as cantidad FROM autobuses WHERE BORRADO = 0 AND ECO =@ECO and not pk1=@pk1";
+            db.PreparedSQL(sql3);
+            db.command.Parameters.AddWithValue("@ECO", _eco);
+            db.command.Parameters.AddWithValue("@pk1", _pk1);
+
+            res = db.getTable();
+
+            if (res.Next())
+            {
+                string cantidad = res.Get("cantidad");
+
+                if (cantidad == "0")
+                {
+                    return true;
+
+                }
+                else
+                {
+                    return false;
+
+                }
+            }
+            else
+            {
+                return false;
+
+            }
+
+        }
+
         private void Insertar_Click(object sender, EventArgs e)
         {
             if (ValidarInputs())
             {
 
-                string sql = "INSERT INTO AUTOBUSES(LINEA_PK,SOCIO_PK," +
-                             (!string.IsNullOrEmpty(_socio_pk_trabajando) ? "SOCIO_PK_TRABAJA," : "") +
-                             "MODELO,PLACAS,SERIE,TIPO_PK,ECO,PK_CHOFER,USUARIO,"+
-                             (!string.IsNullOrEmpty(_fotoBase64) ? "FOTO," : "") + 
-                             (!string.IsNullOrEmpty(_pdf) ? "PDF,ARCHIVO_NOMBRE," : "") + 
-                             "VIGENCIA) " +
-                             "VALUES(@LINEA,@SOCIO," +
-                             (!string.IsNullOrEmpty(_socio_pk_trabajando) ? "@SOCIOTRABAJANDO," : "") +
-                             "@MODELO,@PLACAS,@SERIE,@TIPO,@ECO,@CHOFER,@USUARIO,@FOTO,@PDF,@ARCHIVO,@VIGENCIA)";
-
-                db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@LINEA", _linea_pk);
-                db.command.Parameters.AddWithValue("@SOCIO", _socio_pk);
-                db.command.Parameters.AddWithValue("@SOCIOTRABAJANDO",_socio_pk_trabajando);
-                db.command.Parameters.AddWithValue("@MODELO", _modelo);
-                db.command.Parameters.AddWithValue("@PLACAS", _placas);
-                db.command.Parameters.AddWithValue("@SERIE", _serie);
-                db.command.Parameters.AddWithValue("@TIPO",_tipo);
-                db.command.Parameters.AddWithValue("@ECO", _eco);
-                db.command.Parameters.AddWithValue("@CHOFER", _chofer);
-                db.command.Parameters.AddWithValue("@USUARIO", LoginInfo.UserID);
-                if (!string.IsNullOrEmpty(_fotoBase64)){db.command.Parameters.AddWithValue("@FOTO", _fotoBase64);}
-                if (!string.IsNullOrEmpty(_pdf)) {
-                    db.command.Parameters.AddWithValue("@PDF", _pdf);
-                    db.command.Parameters.AddWithValue("@ARCHIVO", _archivoNombre);
-                }
-                db.command.Parameters.AddWithValue("@VIGENCIA", _vigencia);
-
-                if (db.execute())
+                if (validareco())
                 {
-                    //dataGridViewAutobuses.Rows.Clear();
-                    dataGridViewAutobuses.Refresh();
-                    getRows();
-                    cleanForm();
+                    string sql = "INSERT INTO AUTOBUSES(LINEA_PK,SOCIO_PK," +
+                                 (!string.IsNullOrEmpty(_socio_pk_trabajando) ? "SOCIO_PK_TRABAJA," : "") +
+                                 "MODELO,PLACAS,SERIE,TIPO_PK,ECO,PK_CHOFER,USUARIO," +
+                                 (!string.IsNullOrEmpty(_fotoBase64) ? "FOTO," : "") +
+                                 (!string.IsNullOrEmpty(_pdf) ? "PDF,ARCHIVO_NOMBRE," : "") +
+                                 "VIGENCIA) " +
+                                 "VALUES(@LINEA,@SOCIO," +
+                                 (!string.IsNullOrEmpty(_socio_pk_trabajando) ? "@SOCIOTRABAJANDO," : "") +
+                                 "@MODELO,@PLACAS,@SERIE,@TIPO,@ECO,@CHOFER,@USUARIO,@FOTO,@PDF,@ARCHIVO,@VIGENCIA)";
 
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@LINEA", _linea_pk);
+                    db.command.Parameters.AddWithValue("@SOCIO", _socio_pk);
+                    db.command.Parameters.AddWithValue("@SOCIOTRABAJANDO", _socio_pk_trabajando);
+                    db.command.Parameters.AddWithValue("@MODELO", _modelo);
+                    db.command.Parameters.AddWithValue("@PLACAS", _placas);
+                    db.command.Parameters.AddWithValue("@SERIE", _serie);
+                    db.command.Parameters.AddWithValue("@TIPO", _tipo);
+                    db.command.Parameters.AddWithValue("@ECO", _eco);
+                    db.command.Parameters.AddWithValue("@CHOFER", _chofer);
+                    db.command.Parameters.AddWithValue("@USUARIO", LoginInfo.UserID);
+                    if (!string.IsNullOrEmpty(_fotoBase64)) { db.command.Parameters.AddWithValue("@FOTO", _fotoBase64); }
+                    if (!string.IsNullOrEmpty(_pdf))
+                    {
+                        db.command.Parameters.AddWithValue("@PDF", _pdf);
+                        db.command.Parameters.AddWithValue("@ARCHIVO", _archivoNombre);
+                    }
+                    db.command.Parameters.AddWithValue("@VIGENCIA", _vigencia);
+
+                    if (db.execute())
+                    {
+                        //dataGridViewAutobuses.Rows.Clear();
+                        dataGridViewAutobuses.Refresh();
+                        getRows();
+                        cleanForm();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pudo insertar el registro, intente de nuevo.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo insertar el registro, intente de nuevo.");
+                    Form mensaje = new Mensaje("El econ no se puede repetir", true);
+
+                    mensaje.ShowDialog();
+                    progressBar1.Value = 0;
+                    progressBar1.Hide();
                 }
             }
         }

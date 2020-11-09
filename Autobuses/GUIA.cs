@@ -39,9 +39,9 @@ namespace Autobuses
         private double pkgastos = 0;
         private string folio;
         private string _clase;
-        private float suma = 0;
-        private float iva = 0;
-        private float anticipo = 0;
+        private double suma =0.0;
+        private double iva =0.0;
+        private double anticipo = 0.0;
         private double sumaconiva = 0;
         private double total = 0;
         private int cuantosdoble = 0;
@@ -74,7 +74,7 @@ namespace Autobuses
         private double gastomaximo = 0.0;
         private string usuario;
         private string chofer;
-        private float txtimp = 0;
+        private double txtimp = 0.0;
         private float sumatargeta = 0;
 
         private double txtsal = 0;
@@ -86,7 +86,7 @@ namespace Autobuses
         private double txtiva = 0;
         private double txtvsed = 0;
         private double txtantic = 0;
-        private float txttotal = 0;
+        private double txttotal = 0.0;
         private double tarjetasr = 0;
         private double casetasr = 0;
         private double sueldor = 0;
@@ -1866,8 +1866,8 @@ namespace Autobuses
                 string sql = "";
                
                 
-                    sql = "INSERT INTO GUIA (FOLIO,AUTOBUS,FECHA,ORIGEN,DESTINO,IMPORTE,COMTAQ,COMPBAN,APORTACION,DIESEL,CASETA,IVA,VSEDENA,ANTICIPO,TOTAL,STATUS,validador,CHOFER,SUCURSAL,BOLETOS,LINEA,HORA,TSALIDA,TTURNO,TPASO,PKCORRIDA,SOCIO,PKSOCIO,PKCHOFER,PKAUTOBUS,PASSWORDATAH,PASSWORDUSER)" +
-                             " VALUES(@FOLIO,@AUTOBUS,@FECHA,@ORIGEN,@DESTINO,@IMPORTE,@COMTAQ,@COMPBAN,@APORTACION,@DIESEL,@CASETA,@IVA,@VSEDENA,@ANTICIPO,@TOTAL,@STATUS,@VALIDADOR,@CHOFER,@SUCURSAL,@BOLETOS,@LINEA,@HORA,@TSALIDA,@TTURNO,@TPASO,@PKCORRIDA,@SOCIO,@PKSOCIO,@PKCHOFER,@PKAUTOBUS,@CONDC,@USEC)";
+                    sql = "INSERT INTO GUIA (FOLIO,AUTOBUS,FECHA,ORIGEN,DESTINO,IMPORTE,COMTAQ,COMPBAN,APORTACION,DIESEL,CASETA,IVA,VSEDENA,ANTICIPO,TOTAL,STATUS,validador,CHOFER,SUCURSAL,BOLETOS,LINEA,HORA,TSALIDA,TTURNO,TPASO,PKCORRIDA,SOCIO,PKSOCIO,PKCHOFER,PKAUTOBUS,PASSWORDATAH,PASSWORDUSER,PKUSUARIO)" +
+                             " VALUES(@FOLIO,@AUTOBUS,@FECHA,@ORIGEN,@DESTINO,@IMPORTE,@COMTAQ,@COMPBAN,@APORTACION,@DIESEL,@CASETA,@IVA,@VSEDENA,@ANTICIPO,@TOTAL,@STATUS,@VALIDADOR,@CHOFER,@SUCURSAL,@BOLETOS,@LINEA,@HORA,@TSALIDA,@TTURNO,@TPASO,@PKCORRIDA,@SOCIO,@PKSOCIO,@PKCHOFER,@PKAUTOBUS,@CONDC,@USEC,@PKUSER)";
                 
                 db.PreparedSQL(sql);
                 db.command.Parameters.AddWithValue("@FOLIO", folio);
@@ -1881,7 +1881,7 @@ namespace Autobuses
                 db.command.Parameters.AddWithValue("@COMTAQ", 0);
                 db.command.Parameters.AddWithValue("@CONDC", contchofer);
                 db.command.Parameters.AddWithValue("@USEC", contusuario);
-                
+                db.command.Parameters.AddWithValue("@PKUSER", LoginInfo.PkUsuario);
                 db.command.Parameters.AddWithValue("@COMPBAN", com);
                 if (checkBoxaportacion.Checked == true)
                 {
@@ -2640,10 +2640,10 @@ namespace Autobuses
 
                     pictureBox1.Image = (imagen != null) ? Image.Bytes_A_Imagen((byte[])imagen) : null;
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                    groupBoxhuellaconductor.Visible = true;
+                 //   groupBoxhuellaconductor.Visible = true;
                     chofer = labelnombreconductor.Text;
-                    Validateconductor(pkconductor);
-                    error.Visible = false;
+                   // Validateconductor(pkconductor);
+                  //  error.Visible = false;
 
 
 
@@ -2765,10 +2765,10 @@ namespace Autobuses
 
                     pictureBox1.Image = (imagen != null) ? Image.Bytes_A_Imagen((byte[])imagen) : null;
                     pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                    groupBoxhuellaconductor.Visible = true;
+                 //   groupBoxhuellaconductor.Visible = true;
                     chofer = labelnombreconductor.Text;
-                    Validateconductor(res.Get("PK"));
-                    error.Visible = false;
+                   // Validateconductor(res.Get("PK"));
+                    //error.Visible = false;
 
 
 
@@ -2798,9 +2798,18 @@ namespace Autobuses
             {
                 if (!(char.IsNumber(e.KeyChar)) && (e.KeyChar != (char)Keys.Back))
                 {
-                    MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    e.Handled = true;
-                    return;
+
+                    if (e.KeyChar == 46)
+                    {
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Solo se permiten numeros", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        e.Handled = true;
+                        return;
+                    }
                 }
               
 
@@ -2819,15 +2828,43 @@ namespace Autobuses
         {
             try
             {
+                double busqueda=0.00;
+
                 if (textBoxanticipo.Text == "")
                {
-                    anticipo = 0;
+                    anticipo = 0.0;
                 }
                 else
                 {
-                    anticipo = float.Parse(textBoxanticipo.Text);
+
+                    string tempo = textBoxanticipo.Text;
+
+                    Console.WriteLine(tempo);
+
+                    int posicion = 0;
+                    // string obtenerprimeros= textBoxanticipo.Text.Substring(0, posicion);
+
+                    //string ultimos= textBoxanticipo.Text.Substring( posicion,textBoxanticipo.Text.Length);
+                    //string res = obtenerprimeros + ultimos;
+                    if ( tempo.Contains("."))
+                    {
+                        Console.WriteLine(tempo);
+
+
+
+                        if (double.TryParse(tempo, out anticipo))
+                        {
+
+                            //si ingresa es un valor nro valido
+
+                        }
+                    }
+                    else
+                    {
+                        anticipo = float.Parse(tempo);
+                    }
                 }
-                float temporal= (txttotal - anticipo);
+                double temporal= (txttotal - anticipo);
                 textBoxtotal.Text = Utilerias.Utilerias.formatCurrency(temporal);
             
 

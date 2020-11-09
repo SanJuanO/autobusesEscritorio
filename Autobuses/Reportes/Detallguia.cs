@@ -3,6 +3,7 @@ using ConnectDB;
 using Gma.QrCodeNet.Encoding;
 using Gma.QrCodeNet.Encoding.Windows.Render;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -39,6 +40,7 @@ namespace Autobuses.Reportes
         private string importe;
         private string dsalida;
         private int ideboleto = 0;
+        string[] arreglopksocios = new string[1000];
 
         private string comtaq;
         private string compban;
@@ -66,6 +68,9 @@ namespace Autobuses.Reportes
         private string chofer;
         private string linea;
         private int tamaño;
+        private string pksocioseleccionado;
+        private string socioseleccionado;
+
         private string hora;
         private List<string> asiento = new List<string>();
         private List<string> pasajero = new List<string>();
@@ -687,7 +692,7 @@ namespace Autobuses.Reportes
             try
             {
                 string resultado = fecha.Substring(0, 10);
-                string sql = "SELECT * FROM VENDIDOS WHERE PKGUIA=@PKGUIA AND FECHA=@FECHA";
+                string sql = "SELECT * FROM VENDIDOS WHERE PKGUIA=@PKGUIA";
 
 
                 db.PreparedSQL(sql);
@@ -787,6 +792,8 @@ namespace Autobuses.Reportes
            valores();
 
             llenardatosdeboletosvista();
+            getDatosAdicionalessocios();
+
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -818,6 +825,81 @@ namespace Autobuses.Reportes
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
 
+        private void cambiarsocio_Click(object sender, EventArgs e)
+        {
+            socioactual.Text = socior;
+            panelcambiarsocio.Visible = true;
+        }
+
+        public void getDatosAdicionalessocios()
+        {
+            try
+            {
+                comboBoxsocios.Items.Clear();
+
+                string sql = "SELECT PK,NOMBRE,APELLIDOS FROM SOCIOS WHERE BORRADO=0 ORDER BY NOMBRE";
+                db.PreparedSQL(sql);
+                res = db.getTable();
+                int i = 0;
+                while (res.Next())
+                {
+                    ComboboxItem item = new ComboboxItem();
+                    item.Text = res.Get("NOMBRE") + " " + res.Get("APELLIDOS");
+                    item.Value = res.GetInt("PK");
+                    string b = res.Get("PK");
+                    arreglopksocios[i] = b;
+                    comboBoxsocios.Items.Add(item);
+
+                    i++;
+
+                }
+            }
+            catch (Exception err)
+            {
+                string error = err.Message;
+                MessageBox.Show("Ocurrio un Error, intente de nuevo.");
+                string funcion = "getDatosAdicionales";
+                Utilerias.LOG.write(_clase, funcion, error);
+
+
+            }
+
+        }
+
+        private void acepatrcambio_Click(object sender, EventArgs e)
+        {
+            string sql2 = "UPDATE GUIA SET PKSOCIO=@PKSOCIO,SOCIO=@SOCIO WHERE PK=@PKGUIA ";
+            db.PreparedSQL(sql2);
+
+
+            db.command.Parameters.AddWithValue("@PKGUIA", pk_guia);
+            db.command.Parameters.AddWithValue("@PKSOCIO", pksocioseleccionado);
+            db.command.Parameters.AddWithValue("@SOCIO", socioseleccionado);
+
+
+            db.execute();
+
+            this.Close();
+
+        }
+
+        private void cerrarcambio_Click(object sender, EventArgs e)
+        {
+            panelcambiarsocio.Visible = false;
+        }
+
+        private void comboBoxsocios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxsocios.SelectedItem != null)
+            {
+                int seleccionado = this.comboBoxsocios.SelectedIndex;
+                pksocioseleccionado = arreglopksocios[seleccionado];
+
+                socioseleccionado = this.comboBoxsocios.GetItemText(this.comboBoxsocios.SelectedItem);
+
+            }
+
+        }
     }
 
 

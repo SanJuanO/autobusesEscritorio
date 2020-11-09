@@ -6700,5 +6700,10 @@ namespace Autobuses.Planeacion
 
             }
         }
+
+        private void comboBoxorigen_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -75,7 +75,7 @@ namespace Autobuses.Planeacion
         private double iva;
         private string socior;
         private double gastos;
-
+        private bool permitirpagos = true;
         private double total;
         private string foliobuscar = "";
         private string _linea;
@@ -1116,24 +1116,32 @@ namespace Autobuses.Planeacion
         {
            
             int cantidad = dataGridViewguias.Rows.Count;
+            
             if (cantidad != 0)
             {
-                Form mensaje = new Mensaje("¿Está seguro de pagar la guia?", false);
-
-                DialogResult resut = mensaje.ShowDialog();
-                if (resut == DialogResult.OK)
+                if (permitirpagos)
                 {
+                    Form mensaje = new Mensaje("¿Está seguro de pagar la guia?", false);
 
-                    verificationUserControl1.Show();
-                    labelusu.Visible = true;
-                    verificationUserControl1.Samples.Clear();
-                    verificationUserControl1.IsVerificationComplete = false;
-                    verificationUserControl1.img = null;
-             
-                    ValidateUser();
-                    verificationUserControl1.Start();
+                    DialogResult resut = mensaje.ShowDialog();
+                    if (resut == DialogResult.OK)
+                    {
 
-                    verificationUserControl1.Focus();
+                        verificationUserControl1.Show();
+                        labelusu.Visible = true;
+                        verificationUserControl1.Samples.Clear();
+                        verificationUserControl1.IsVerificationComplete = false;
+                        verificationUserControl1.img = null;
+
+                        ValidateUser();
+                        verificationUserControl1.Start();
+
+                        verificationUserControl1.Focus();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Una guia  marcada en rojo no ha realizado corte");
                 }
             }
             else
@@ -1431,7 +1439,7 @@ namespace Autobuses.Planeacion
                     nombredetermindo = "super contraseña";
                 }
                 string usuario = LoginInfo.NombreID + " " + LoginInfo.ApellidoID;
-
+                string pkuser = LoginInfo.PkUsuario;
                 if (contrausuario == true)
                 {
                     usuario = "super contraseña";
@@ -1443,8 +1451,8 @@ namespace Autobuses.Planeacion
                 {
                     
                     pksocio = (string)(combosocio.SelectedItem as ComboboxItem).Value;
-                    string sql = "INSERT INTO GUIASPAGADAS(FECHAINICIO,FECHATERMINO,CANTIDADEGUIAS,IMPORTE,GASTOS,TARJETAS,IVA,TOTAL,USUARIO,SOCIO, FOLIO,SUCURSAL,FECHA,LINEA,PKSOCIO,COBRADOR,APORTACIONES,COMPBAN,CONTRAUSUARIO,CONTRASOCIO)" +
-                        " VALUES(@FECHAINICIO,@FECHATERMINO,@CANTIDADEGUIAS,@IMPORTE,@GASTOS,@TARJETAS,@IVA,@TOTAL,@USUARIO,@SOCIO,@FOLIO,@SUCURSAL,@FECHA,@LINEA,@PKSOCIO,@COBRADOR,@APORTACIONES,@COMPBAN,@CONTRAUSUARIO,@CONTRASOCIO)";
+                    string sql = "INSERT INTO GUIASPAGADAS(FECHAINICIO,FECHATERMINO,CANTIDADEGUIAS,IMPORTE,GASTOS,TARJETAS,IVA,TOTAL,USUARIO,SOCIO, FOLIO,SUCURSAL,FECHA,LINEA,PKSOCIO,COBRADOR,APORTACIONES,COMPBAN,CONTRAUSUARIO,CONTRASOCIO,PK_USUARIO)" +
+                        " VALUES(@FECHAINICIO,@FECHATERMINO,@CANTIDADEGUIAS,@IMPORTE,@GASTOS,@TARJETAS,@IVA,@TOTAL,@USUARIO,@SOCIO,@FOLIO,@SUCURSAL,@FECHA,@LINEA,@PKSOCIO,@COBRADOR,@APORTACIONES,@COMPBAN,@CONTRAUSUARIO,@CONTRASOCIO,@PK_USUARIO)";
                     db.PreparedSQL(sql);
                     db.command.Parameters.AddWithValue("@FECHAINICIO", fechainicio);
                     db.command.Parameters.AddWithValue("@FECHATERMINO", fechatermino);
@@ -1457,6 +1465,7 @@ namespace Autobuses.Planeacion
                     db.command.Parameters.AddWithValue("@USUARIO", usuario);
                     db.command.Parameters.AddWithValue("@SOCIO", _socio);
                     db.command.Parameters.AddWithValue("@PKSOCIO", pksocio);
+
                     db.command.Parameters.AddWithValue("@COBRADOR",nombredetermindo);
                     db.command.Parameters.AddWithValue("@FOLIO", folio);
                     db.command.Parameters.AddWithValue("@SUCURSAL", LoginInfo.Sucursal);
@@ -1466,6 +1475,8 @@ namespace Autobuses.Planeacion
                     db.command.Parameters.AddWithValue("@COMPBAN", compbancotext);
                     db.command.Parameters.AddWithValue("@CONTRAUSUARIO", contrausuario);
                     db.command.Parameters.AddWithValue("@CONTRASOCIO", contrasocio);
+                    db.command.Parameters.AddWithValue("@PK_USUARIO", pkuser);
+
 
 
                     pkguia = db.executeId();
@@ -1730,10 +1741,10 @@ namespace Autobuses.Planeacion
                 dispototal.Text = "$" + 0;
                 dispoguias.Text = "$" + 0;
                 disptotal.Text = "$" + 0;
-                string sql = "SELECT CONVERT(REAL,IMPORTE) AS IMPORTE,CONVERT(REAL,COMPBAN) AS COMPBAN,CONVERT(REAL,TSALIDA) AS TSALIDA,CONVERT(REAL,TTURNO) AS TTURNO,CONVERT(REAL,TPASO) AS TPASO," +
+                string sql = "SELECT  CONVERT(REAL,IMPORTE) AS IMPORTE,CONVERT(REAL,COMPBAN) AS COMPBAN,CONVERT(REAL,TSALIDA) AS TSALIDA,CONVERT(REAL,TTURNO) AS TTURNO,CONVERT(REAL,TPASO) AS TPASO," +
                     "CONVERT(REAL,IVA) AS IVA,CONVERT(REAL,ANTICIPO) AS ANTICIPO,CONVERT(REAL,TOTAL) AS TOTAL,FECHA,FOLIO,STATUS,ORIGEN,DESTINO,AUTOBUS,BOLETOS,COMTAQ," +
-                    "CONVERT(REAL,APORTACION) AS APORTACION,DIESEL,CASETA,VSEDENA,HORA,VALIDADOR,CHOFER,LINEA,SOCIO,PK FROM GUIA WHERE PK in (SELECT PK FROM VTOTAL_GUIA_DETALLE where" +
-                    " pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHATERMINO) ORDER BY PK";
+                    "CONVERT(REAL,APORTACION) AS APORTACION,DIESEL,CASETA,VSEDENA,HORA,VALIDADOR,CHOFER,LINEA,SOCIO,PK,PKCORTECAJA FROM GUIA WHERE PK in (SELECT PK FROM VTOTAL_GUIA_DETALLE where" +
+                    " pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHATERMINO) AND LINEA=@linea ORDER BY PK";
                 db.PreparedSQL(sql);
                 db.command.Parameters.AddWithValue("@pksocio", pksocio);
                 db.command.Parameters.AddWithValue("@FECHATERMINO", fechatermino);
@@ -1745,8 +1756,16 @@ namespace Autobuses.Planeacion
                 while (res.Next())
                 {
                     n = dataGridViewguias.Rows.Add();
+                    var pkcorte = res.Get("PKCORTECAJA");
+                    if (string.IsNullOrEmpty(pkcorte))
+                    {
+                        permitirpagos = false;
+                       Color colorActual = Color.FromName("Red");
 
-                    importe= (double.TryParse(res.Get("IMPORTE"), out double aux1)) ? res.GetDouble("IMPORTE") : 0.0;
+                        dataGridViewguias.Rows[n].DefaultCellStyle.BackColor = colorActual;
+
+                    }
+                    importe = (double.TryParse(res.Get("IMPORTE"), out double aux1)) ? res.GetDouble("IMPORTE") : 0.0;
                     dataGridViewguias.Rows[n].Cells["importedname"].Value = importe;
                     dataGridViewguias.Rows[n].Cells["imp"].Value = Utilerias.Utilerias.formatCurrency(importe);
                     
@@ -1853,6 +1872,7 @@ namespace Autobuses.Planeacion
                 textBoxcompbanco.Text = Utilerias.Utilerias.formatCurrency(compbancotext);
                 textBoxguias.Text = cantidad.ToString();
                 dispo();
+
 
             }
             catch (Exception err)

@@ -64,13 +64,10 @@ namespace Autobuses.Reportes
             try
             {
                 string sql = "SELECT FOLIO,LINEA,ORIGEN,DESTINOBOLETO,SALIDA,TARIFA,ASIENTO,PRECIO, " +
-                    "STATUS,ECO,FORMADEPAGO,FOLIOTARJETA,DIGITOSTARJETA FROM VENDIDOS WHERE CORTE = 1 AND VENDEDOR =@VENDEDOR and " +
-                    "FECHAC BETWEEN CONVERT(datetime, @FECHAINI, 121) AND CONVERT(datetime, @FECHAFINAL,121)  ";
+                    "STATUS,ECO,FORMADEPAGO,FOLIOTARJETA,DIGITOSTARJETA FROM VENDIDOS WHERE CORTE = 1 AND PKCORTE =@VENDEDOR ";
                 db.PreparedSQL(sql);
                 db.command.Parameters.AddWithValue("@VENDEDOR", usuario);
-                db.command.Parameters.AddWithValue("@FECHAFINAL", fechafinal);
-                db.command.Parameters.AddWithValue("@FECHAINI", fechainicio);
-
+               
 
 
                 dataGridViewBOLETOS.Rows.Clear();
@@ -161,8 +158,7 @@ private void button7_Click(object sender, EventArgs e)
                                string _searchtool = Convert.ToString(textBoxbuscar.Text);
 
                 string sql = "SELECT FOLIO,LINEA,ORIGEN,DESTINOBOLETO,SALIDA,TARIFA,ASIENTO,PRECIO, " +
-                            "STATUS,ECO,FORMADEPAGO,FOLIOTARJETA,DIGITOSTARJETA FROM VENDIDOS WHERE CORTE = 1 AND VENDEDOR =@VENDEDOR and " +
-                            "FECHAC BETWEEN CONVERT(datetime, @FECHAINI, 121) AND CONVERT(datetime, @FECHAFINAL,121) ";
+                            "STATUS,ECO,FORMADEPAGO,FOLIOTARJETA,DIGITOSTARJETA FROM VENDIDOS WHERE CORTE=1 AND PKCORTE=@VENDEDOR ";
 
                 dataGridViewBOLETOS.Rows.Clear();
 
@@ -174,9 +170,8 @@ private void button7_Click(object sender, EventArgs e)
                 db.PreparedSQL(sql);
                 db.command.Parameters.AddWithValue("@SEARCH", "%" + _searchtool + "%");
                 db.command.Parameters.AddWithValue("@VENDEDOR", usuario);
-                db.command.Parameters.AddWithValue("@FECHAFINAL", fechafinal);
-                db.command.Parameters.AddWithValue("@FECHAINI", fechainicio);
-                res = db.getTable();
+                
+                    res = db.getTable();
                 int count = 0;
                 int n = 0;
                 double sum = 0;
@@ -254,8 +249,7 @@ private void button7_Click(object sender, EventArgs e)
                     string _searchtool = Convert.ToString(textBoxbuscar.Text);
 
                     string sql = "SELECT FOLIO,LINEA,ORIGEN,DESTINOBOLETO,SALIDA,TARIFA,ASIENTO,PRECIO, " +
-                                "STATUS,ECO,FORMADEPAGO,FOLIOTARJETA,DIGITOSTARJETA FROM VENDIDOS WHERE CORTE = 1 AND VENDEDOR =@VENDEDOR and " +
-                                "FECHAC BETWEEN CONVERT(datetime, @FECHAINI, 121) AND CONVERT(datetime, @FECHAFINAL,121) ";
+                                "STATUS,ECO,FORMADEPAGO,FOLIOTARJETA,DIGITOSTARJETA FROM VENDIDOS WHERE CORTE = 1 AND PKCORTE =@VENDEDOR ";
 
                     dataGridViewBOLETOS.Rows.Clear();
 
@@ -267,8 +261,6 @@ private void button7_Click(object sender, EventArgs e)
                     db.PreparedSQL(sql);
                     db.command.Parameters.AddWithValue("@SEARCH", "%" + _searchtool + "%");
                     db.command.Parameters.AddWithValue("@VENDEDOR", usuario);
-                    db.command.Parameters.AddWithValue("@FECHAFINAL", fechafinal);
-                    db.command.Parameters.AddWithValue("@FECHAINI", fechainicio);
                     res = db.getTable();
                     int count = 0;
                     int n = 0;

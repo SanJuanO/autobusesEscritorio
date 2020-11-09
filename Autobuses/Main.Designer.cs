@@ -91,6 +91,12 @@
             this.label40 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.panel17 = new System.Windows.Forms.Panel();
+            this.label125 = new System.Windows.Forms.Label();
+            this.label126 = new System.Windows.Forms.Label();
+            this.label127 = new System.Windows.Forms.Label();
             this.rpagos = new System.Windows.Forms.Panel();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -214,6 +220,12 @@
             this.label90 = new System.Windows.Forms.Label();
             this.label116 = new System.Windows.Forms.Label();
             this.label117 = new System.Windows.Forms.Label();
+            this.panelcortedeguias = new System.Windows.Forms.Panel();
+            this.pictureBox21 = new System.Windows.Forms.PictureBox();
+            this.panel21 = new System.Windows.Forms.Panel();
+            this.label128 = new System.Windows.Forms.Label();
+            this.label129 = new System.Windows.Forms.Label();
+            this.label130 = new System.Windows.Forms.Label();
             this.infracciones = new System.Windows.Forms.Panel();
             this.pictureBox34 = new System.Windows.Forms.PictureBox();
             this.panel55 = new System.Windows.Forms.Panel();
@@ -292,12 +304,12 @@
             this.label112 = new System.Windows.Forms.Label();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.label125 = new System.Windows.Forms.Label();
-            this.label126 = new System.Windows.Forms.Label();
-            this.label127 = new System.Windows.Forms.Label();
+            this.panelpagoguia = new System.Windows.Forms.Panel();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.label131 = new System.Windows.Forms.Label();
+            this.label132 = new System.Windows.Forms.Label();
+            this.label133 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxfoto)).BeginInit();
             this.PanelBarraTitulo.SuspendLayout();
@@ -322,6 +334,9 @@
             this.taquilla.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).BeginInit();
             this.panel28.SuspendLayout();
+            this.panel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.panel17.SuspendLayout();
             this.rpagos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.panel8.SuspendLayout();
@@ -376,6 +391,9 @@
             this.pagarguia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel11.SuspendLayout();
+            this.panelcortedeguias.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
+            this.panel21.SuspendLayout();
             this.infracciones.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).BeginInit();
             this.panel55.SuspendLayout();
@@ -409,9 +427,9 @@
             this.usuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).BeginInit();
             this.panel75.SuspendLayout();
-            this.panel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            this.panel17.SuspendLayout();
+            this.panelpagoguia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            this.panel23.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -535,7 +553,7 @@
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(150, 81);
             this.flowLayoutPanel1.TabIndex = 8;
@@ -544,7 +562,7 @@
             // 
             this.pictureBoxactualizar.Image = global::Autobuses.Properties.Resources.boton_actualizar__1_;
             this.pictureBoxactualizar.Location = new System.Drawing.Point(928, 10);
-            this.pictureBoxactualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBoxactualizar.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxactualizar.Name = "pictureBoxactualizar";
             this.pictureBoxactualizar.Size = new System.Drawing.Size(26, 28);
             this.pictureBoxactualizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -848,6 +866,7 @@
             this.panelplaneacion.Controls.Add(this.rolado);
             this.panelplaneacion.Controls.Add(this.corridas);
             this.panelplaneacion.Controls.Add(this.pagarguia);
+            this.panelplaneacion.Controls.Add(this.panelcortedeguias);
             this.panelplaneacion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelplaneacion.Location = new System.Drawing.Point(0, 0);
             this.panelplaneacion.Name = "panelplaneacion";
@@ -868,6 +887,8 @@
             this.panelreportes.Controls.Add(this.reporterutas);
             this.panelreportes.Controls.Add(this.reportehorarios);
             this.panelreportes.Controls.Add(this.panel5);
+            this.panelreportes.Controls.Add(this.panelpagoguia);
+            this.panelreportes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelreportes.Location = new System.Drawing.Point(0, 0);
             this.panelreportes.Name = "panelreportes";
             this.panelreportes.Size = new System.Drawing.Size(870, 457);
@@ -1211,6 +1232,75 @@
             this.label39.Size = new System.Drawing.Size(67, 20);
             this.label39.TabIndex = 2;
             this.label39.Text = "Clientes";
+            // 
+            // panel15
+            // 
+            this.panel15.BackColor = System.Drawing.Color.White;
+            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel15.Controls.Add(this.pictureBox5);
+            this.panel15.Controls.Add(this.panel17);
+            this.panel15.Location = new System.Drawing.Point(165, 180);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(85, 108);
+            this.panel15.TabIndex = 57;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Autobuses.Properties.Resources.roles;
+            this.pictureBox5.Location = new System.Drawing.Point(19, 37);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(45, 52);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 1;
+            this.pictureBox5.TabStop = false;
+            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            // 
+            // panel17
+            // 
+            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel17.Controls.Add(this.label125);
+            this.panel17.Controls.Add(this.label126);
+            this.panel17.Controls.Add(this.label127);
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel17.Location = new System.Drawing.Point(0, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(83, 30);
+            this.panel17.TabIndex = 0;
+            // 
+            // label125
+            // 
+            this.label125.AutoSize = true;
+            this.label125.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label125.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label125.Location = new System.Drawing.Point(24, 69);
+            this.label125.Name = "label125";
+            this.label125.Size = new System.Drawing.Size(57, 20);
+            this.label125.TabIndex = 3;
+            this.label125.Text = "15, 485";
+            // 
+            // label126
+            // 
+            this.label126.AutoSize = true;
+            this.label126.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label126.ForeColor = System.Drawing.Color.White;
+            this.label126.Location = new System.Drawing.Point(21, -50);
+            this.label126.Name = "label126";
+            this.label126.Size = new System.Drawing.Size(67, 20);
+            this.label126.TabIndex = 2;
+            this.label126.Text = "Clientes";
+            // 
+            // label127
+            // 
+            this.label127.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label127.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label127.ForeColor = System.Drawing.Color.White;
+            this.label127.Location = new System.Drawing.Point(-1, -1);
+            this.label127.Name = "label127";
+            this.label127.Size = new System.Drawing.Size(84, 32);
+            this.label127.TabIndex = 4;
+            this.label127.Text = "Reporte Rol";
+            this.label127.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label127.UseCompatibleTextRendering = true;
             // 
             // rpagos
             // 
@@ -2635,6 +2725,75 @@
             this.label117.TabIndex = 2;
             this.label117.Text = "Clientes";
             // 
+            // panelcortedeguias
+            // 
+            this.panelcortedeguias.BackColor = System.Drawing.Color.White;
+            this.panelcortedeguias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelcortedeguias.Controls.Add(this.pictureBox21);
+            this.panelcortedeguias.Controls.Add(this.panel21);
+            this.panelcortedeguias.Location = new System.Drawing.Point(411, 197);
+            this.panelcortedeguias.Name = "panelcortedeguias";
+            this.panelcortedeguias.Size = new System.Drawing.Size(85, 108);
+            this.panelcortedeguias.TabIndex = 56;
+            // 
+            // pictureBox21
+            // 
+            this.pictureBox21.Image = global::Autobuses.Properties.Resources.cortecaja;
+            this.pictureBox21.Location = new System.Drawing.Point(18, 38);
+            this.pictureBox21.Name = "pictureBox21";
+            this.pictureBox21.Size = new System.Drawing.Size(45, 52);
+            this.pictureBox21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox21.TabIndex = 1;
+            this.pictureBox21.TabStop = false;
+            this.pictureBox21.Click += new System.EventHandler(this.pictureBox21_Click);
+            // 
+            // panel21
+            // 
+            this.panel21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel21.Controls.Add(this.label128);
+            this.panel21.Controls.Add(this.label129);
+            this.panel21.Controls.Add(this.label130);
+            this.panel21.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel21.Location = new System.Drawing.Point(0, 0);
+            this.panel21.Name = "panel21";
+            this.panel21.Size = new System.Drawing.Size(83, 30);
+            this.panel21.TabIndex = 0;
+            // 
+            // label128
+            // 
+            this.label128.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label128.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label128.ForeColor = System.Drawing.Color.White;
+            this.label128.Location = new System.Drawing.Point(-1, -1);
+            this.label128.Name = "label128";
+            this.label128.Size = new System.Drawing.Size(84, 32);
+            this.label128.TabIndex = 4;
+            this.label128.Text = "Corte de Guias";
+            this.label128.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label128.UseCompatibleTextRendering = true;
+            // 
+            // label129
+            // 
+            this.label129.AutoSize = true;
+            this.label129.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label129.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label129.Location = new System.Drawing.Point(24, 69);
+            this.label129.Name = "label129";
+            this.label129.Size = new System.Drawing.Size(57, 20);
+            this.label129.TabIndex = 3;
+            this.label129.Text = "15, 485";
+            // 
+            // label130
+            // 
+            this.label130.AutoSize = true;
+            this.label130.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label130.ForeColor = System.Drawing.Color.White;
+            this.label130.Location = new System.Drawing.Point(21, -50);
+            this.label130.Name = "label130";
+            this.label130.Size = new System.Drawing.Size(67, 20);
+            this.label130.TabIndex = 2;
+            this.label130.Text = "Clientes";
+            // 
             // infracciones
             // 
             this.infracciones.BackColor = System.Drawing.Color.White;
@@ -3522,74 +3681,74 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // panel15
+            // panelpagoguia
             // 
-            this.panel15.BackColor = System.Drawing.Color.White;
-            this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel15.Controls.Add(this.pictureBox5);
-            this.panel15.Controls.Add(this.panel17);
-            this.panel15.Location = new System.Drawing.Point(165, 180);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(85, 108);
-            this.panel15.TabIndex = 57;
+            this.panelpagoguia.BackColor = System.Drawing.Color.White;
+            this.panelpagoguia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelpagoguia.Controls.Add(this.pictureBox25);
+            this.panelpagoguia.Controls.Add(this.panel23);
+            this.panelpagoguia.Location = new System.Drawing.Point(283, 181);
+            this.panelpagoguia.Name = "panelpagoguia";
+            this.panelpagoguia.Size = new System.Drawing.Size(85, 108);
+            this.panelpagoguia.TabIndex = 58;
             // 
-            // pictureBox5
+            // pictureBox25
             // 
-            this.pictureBox5.Image = global::Autobuses.Properties.Resources.roles;
-            this.pictureBox5.Location = new System.Drawing.Point(19, 37);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(45, 52);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 1;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Click += new System.EventHandler(this.pictureBox5_Click);
+            this.pictureBox25.Image = global::Autobuses.Properties.Resources.cortecaja;
+            this.pictureBox25.Location = new System.Drawing.Point(18, 38);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(45, 52);
+            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox25.TabIndex = 1;
+            this.pictureBox25.TabStop = false;
+            this.pictureBox25.Click += new System.EventHandler(this.pictureBox25_Click);
             // 
-            // panel17
+            // panel23
             // 
-            this.panel17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel17.Controls.Add(this.label125);
-            this.panel17.Controls.Add(this.label126);
-            this.panel17.Controls.Add(this.label127);
-            this.panel17.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel17.Location = new System.Drawing.Point(0, 0);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(83, 30);
-            this.panel17.TabIndex = 0;
+            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel23.Controls.Add(this.label131);
+            this.panel23.Controls.Add(this.label132);
+            this.panel23.Controls.Add(this.label133);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(0, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(83, 30);
+            this.panel23.TabIndex = 0;
             // 
-            // label125
+            // label131
             // 
-            this.label125.AutoSize = true;
-            this.label125.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label125.ForeColor = System.Drawing.Color.SeaGreen;
-            this.label125.Location = new System.Drawing.Point(24, 69);
-            this.label125.Name = "label125";
-            this.label125.Size = new System.Drawing.Size(57, 20);
-            this.label125.TabIndex = 3;
-            this.label125.Text = "15, 485";
+            this.label131.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label131.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.ForeColor = System.Drawing.Color.White;
+            this.label131.Location = new System.Drawing.Point(-1, -1);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(84, 32);
+            this.label131.TabIndex = 4;
+            this.label131.Text = "Reporte Pago Guias";
+            this.label131.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label131.UseCompatibleTextRendering = true;
             // 
-            // label126
+            // label132
             // 
-            this.label126.AutoSize = true;
-            this.label126.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label126.ForeColor = System.Drawing.Color.White;
-            this.label126.Location = new System.Drawing.Point(21, -50);
-            this.label126.Name = "label126";
-            this.label126.Size = new System.Drawing.Size(67, 20);
-            this.label126.TabIndex = 2;
-            this.label126.Text = "Clientes";
+            this.label132.AutoSize = true;
+            this.label132.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label132.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label132.Location = new System.Drawing.Point(24, 69);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(57, 20);
+            this.label132.TabIndex = 3;
+            this.label132.Text = "15, 485";
             // 
-            // label127
+            // label133
             // 
-            this.label127.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label127.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label127.ForeColor = System.Drawing.Color.White;
-            this.label127.Location = new System.Drawing.Point(-1, -1);
-            this.label127.Name = "label127";
-            this.label127.Size = new System.Drawing.Size(84, 32);
-            this.label127.TabIndex = 4;
-            this.label127.Text = "Reporte Rol";
-            this.label127.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label127.UseCompatibleTextRendering = true;
+            this.label133.AutoSize = true;
+            this.label133.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label133.ForeColor = System.Drawing.Color.White;
+            this.label133.Location = new System.Drawing.Point(21, -50);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(67, 20);
+            this.label133.TabIndex = 2;
+            this.label133.Text = "Clientes";
             // 
             // Main
             // 
@@ -3637,6 +3796,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox20)).EndInit();
             this.panel28.ResumeLayout(false);
             this.panel28.PerformLayout();
+            this.panel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             this.rpagos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.panel8.ResumeLayout(false);
@@ -3709,6 +3872,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
+            this.panelcortedeguias.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
+            this.panel21.ResumeLayout(false);
+            this.panel21.PerformLayout();
             this.infracciones.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox34)).EndInit();
             this.panel55.ResumeLayout(false);
@@ -3753,10 +3920,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).EndInit();
             this.panel75.ResumeLayout(false);
             this.panel75.PerformLayout();
-            this.panel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.panel17.ResumeLayout(false);
-            this.panel17.PerformLayout();
+            this.panelpagoguia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3939,14 +4106,14 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Label labelsucursal;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Panel panelcortedeguias;
+        private System.Windows.Forms.PictureBox pictureBox21;
+        private System.Windows.Forms.Panel panel21;
+        private System.Windows.Forms.Label label128;
+        private System.Windows.Forms.Label label129;
+        private System.Windows.Forms.Label label130;
         private System.Windows.Forms.Panel panelreportes;
-        private System.Windows.Forms.Panel reporterutas;
-        private System.Windows.Forms.PictureBox pictureBoxrutasdetalle;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label91;
-        private System.Windows.Forms.Label label113;
-        private System.Windows.Forms.Label label114;
-        private System.Windows.Forms.Label label115;
         private System.Windows.Forms.Panel panelventa;
         private System.Windows.Forms.Panel panelconfiguracion;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -3976,6 +4143,12 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label125;
+        private System.Windows.Forms.Label label126;
+        private System.Windows.Forms.Label label127;
         private System.Windows.Forms.Panel rpagos;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Panel panel8;
@@ -4011,6 +4184,13 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Panel reporterutas;
+        private System.Windows.Forms.PictureBox pictureBoxrutasdetalle;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.Label label113;
+        private System.Windows.Forms.Label label114;
+        private System.Windows.Forms.Label label115;
         private System.Windows.Forms.Panel reportehorarios;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Panel panel13;
@@ -4024,13 +4204,12 @@
         private System.Windows.Forms.Label label123;
         private System.Windows.Forms.Label label124;
         private System.Windows.Forms.Label label122;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Label label125;
-        private System.Windows.Forms.Label label126;
-        private System.Windows.Forms.Label label127;
+        private System.Windows.Forms.Panel panelpagoguia;
+        private System.Windows.Forms.PictureBox pictureBox25;
+        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.Label label131;
+        private System.Windows.Forms.Label label132;
+        private System.Windows.Forms.Label label133;
     }
 }
 

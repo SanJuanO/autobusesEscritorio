@@ -79,6 +79,7 @@ namespace Autobuses.Reportes
         private string fechaf;
         private string usercaj;
         private Bitmap imagensplash = new Bitmap(Autobuses.Properties.Resources.logotickets);
+        private string PKCORTE;
 
         public Reporte_Corte_de_Caja()
         {
@@ -323,6 +324,8 @@ namespace Autobuses.Reportes
                     {
                         fechai = res.Get("APARTIR");
                         fechaf = res.Get("HASTA");
+                        PKCORTE = res.Get("PK");
+
                         bcemitidos = res.Get("BCEMITIDOS");
                         biemitidos = (double.TryParse(res.Get("BIEMITIDOS"), out double aux1)) ? res.GetDouble("BIEMITIDOS") : 0.0;
                         bccancelado = res.Get("BCCANCELADOS");
@@ -917,7 +920,7 @@ namespace Autobuses.Reportes
             else
             {
 
-                form = new Reportes.detallecortecaja(textBoxusuario.Text, fechai, fechaf);
+                form = new Reportes.detallecortecaja(PKCORTE, fechai, fechaf);
                 AddOwnedForm(form);
                 form.StartPosition = FormStartPosition.CenterScreen;
                 form.Show();

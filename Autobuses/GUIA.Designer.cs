@@ -90,6 +90,7 @@
             this.panelconductor = new System.Windows.Forms.Panel();
             this.error = new System.Windows.Forms.Label();
             this.groupBoxhuellaconductor = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.comboBoxconductoruser = new System.Windows.Forms.ComboBox();
             this.labelnombreconductor = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -112,7 +113,6 @@
             this.textboxescaneado = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.verificationUserControl1 = new MyAttendance.VerificationUserControl();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.datagridvendidos)).BeginInit();
             this.BarraTitulo.SuspendLayout();
             this.groupBoxtarjetas.SuspendLayout();
@@ -769,7 +769,7 @@
             this.panelconductor.Controls.Add(this.groupBoxhuellaconductor);
             this.panelconductor.Controls.Add(this.panel2);
             this.panelconductor.Controls.Add(this.labelsocio);
-            this.panelconductor.Location = new System.Drawing.Point(146, 265);
+            this.panelconductor.Location = new System.Drawing.Point(142, 299);
             this.panelconductor.Margin = new System.Windows.Forms.Padding(2);
             this.panelconductor.Name = "panelconductor";
             this.panelconductor.Size = new System.Drawing.Size(528, 278);
@@ -804,7 +804,21 @@
             this.groupBoxhuellaconductor.Size = new System.Drawing.Size(472, 210);
             this.groupBoxhuellaconductor.TabIndex = 322;
             this.groupBoxhuellaconductor.TabStop = false;
-            this.groupBoxhuellaconductor.Visible = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(169, 145);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(116, 30);
+            this.button2.TabIndex = 325;
+            this.button2.Text = "Aceptar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // comboBoxconductoruser
             // 
@@ -1069,21 +1083,6 @@
             this.verificationUserControl1.VerificationStatusChanged += new Autobuses.StatusChangedEventHandler(this.VerificationUserControl1_VerificationStatusChanged);
             this.verificationUserControl1.BackColorChanged += new System.EventHandler(this.verificationUserControl1_BackColorChanged);
             this.verificationUserControl1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.VerificationUserControl1_KeyUp);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(169, 145);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(116, 30);
-            this.button2.TabIndex = 325;
-            this.button2.Text = "Aceptar";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // GUIA
             // 

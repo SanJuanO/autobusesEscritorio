@@ -113,9 +113,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxcomban = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.panelcambiarsocio = new System.Windows.Forms.Panel();
+            this.error = new System.Windows.Forms.Label();
+            this.groupBoxhuellaconductor = new System.Windows.Forms.GroupBox();
+            this.acepatrcambio = new System.Windows.Forms.Button();
+            this.comboBoxsocios = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.labelsocio = new System.Windows.Forms.Label();
+            this.cambiarsocio = new System.Windows.Forms.Button();
+            this.cerrarcambio = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.socioactual = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.datagridviewbol)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewguias)).BeginInit();
             this.BarraTitulo.SuspendLayout();
+            this.panelcambiarsocio.SuspendLayout();
+            this.groupBoxhuellaconductor.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxtotal
@@ -791,7 +807,7 @@
             this.buttonimp.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.buttonimp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonimp.ForeColor = System.Drawing.Color.Silver;
-            this.buttonimp.Location = new System.Drawing.Point(403, 634);
+            this.buttonimp.Location = new System.Drawing.Point(172, 627);
             this.buttonimp.Margin = new System.Windows.Forms.Padding(4);
             this.buttonimp.Name = "buttonimp";
             this.buttonimp.Size = new System.Drawing.Size(180, 42);
@@ -887,6 +903,169 @@
             this.label12.TabIndex = 302;
             this.label12.Text = " Comp. Bancos";
             // 
+            // panelcambiarsocio
+            // 
+            this.panelcambiarsocio.Controls.Add(this.error);
+            this.panelcambiarsocio.Controls.Add(this.groupBoxhuellaconductor);
+            this.panelcambiarsocio.Controls.Add(this.panel2);
+            this.panelcambiarsocio.Controls.Add(this.labelsocio);
+            this.panelcambiarsocio.Location = new System.Drawing.Point(236, 231);
+            this.panelcambiarsocio.Margin = new System.Windows.Forms.Padding(2);
+            this.panelcambiarsocio.Name = "panelcambiarsocio";
+            this.panelcambiarsocio.Size = new System.Drawing.Size(528, 278);
+            this.panelcambiarsocio.TabIndex = 304;
+            this.panelcambiarsocio.Visible = false;
+            // 
+            // error
+            // 
+            this.error.AutoSize = true;
+            this.error.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.error.ForeColor = System.Drawing.Color.Red;
+            this.error.Location = new System.Drawing.Point(33, 90);
+            this.error.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.error.Name = "error";
+            this.error.Size = new System.Drawing.Size(0, 17);
+            this.error.TabIndex = 323;
+            this.error.Visible = false;
+            // 
+            // groupBoxhuellaconductor
+            // 
+            this.groupBoxhuellaconductor.Controls.Add(this.socioactual);
+            this.groupBoxhuellaconductor.Controls.Add(this.label13);
+            this.groupBoxhuellaconductor.Controls.Add(this.acepatrcambio);
+            this.groupBoxhuellaconductor.Controls.Add(this.comboBoxsocios);
+            this.groupBoxhuellaconductor.Controls.Add(this.label16);
+            this.groupBoxhuellaconductor.Location = new System.Drawing.Point(39, 39);
+            this.groupBoxhuellaconductor.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxhuellaconductor.Name = "groupBoxhuellaconductor";
+            this.groupBoxhuellaconductor.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBoxhuellaconductor.Size = new System.Drawing.Size(472, 210);
+            this.groupBoxhuellaconductor.TabIndex = 322;
+            this.groupBoxhuellaconductor.TabStop = false;
+            // 
+            // acepatrcambio
+            // 
+            this.acepatrcambio.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.acepatrcambio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.acepatrcambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acepatrcambio.ForeColor = System.Drawing.Color.White;
+            this.acepatrcambio.Location = new System.Drawing.Point(167, 165);
+            this.acepatrcambio.Margin = new System.Windows.Forms.Padding(2);
+            this.acepatrcambio.Name = "acepatrcambio";
+            this.acepatrcambio.Size = new System.Drawing.Size(116, 30);
+            this.acepatrcambio.TabIndex = 325;
+            this.acepatrcambio.Text = "Aceptar";
+            this.acepatrcambio.UseVisualStyleBackColor = false;
+            this.acepatrcambio.Click += new System.EventHandler(this.acepatrcambio_Click);
+            // 
+            // comboBoxsocios
+            // 
+            this.comboBoxsocios.FormattingEnabled = true;
+            this.comboBoxsocios.Location = new System.Drawing.Point(92, 113);
+            this.comboBoxsocios.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBoxsocios.Name = "comboBoxsocios";
+            this.comboBoxsocios.Size = new System.Drawing.Size(292, 23);
+            this.comboBoxsocios.TabIndex = 324;
+            this.comboBoxsocios.SelectedIndexChanged += new System.EventHandler(this.comboBoxsocios_SelectedIndexChanged);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(155, 84);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(122, 17);
+            this.label16.TabIndex = 313;
+            this.label16.Text = " Nombre del socio";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(45)))), ((int)(((byte)(53)))));
+            this.panel2.Controls.Add(this.cerrarcambio);
+            this.panel2.Controls.Add(this.label19);
+            this.panel2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(528, 30);
+            this.panel2.TabIndex = 312;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(203, 8);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(112, 17);
+            this.label19.TabIndex = 16;
+            this.label19.Text = "Cambio de socio";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelsocio
+            // 
+            this.labelsocio.AutoSize = true;
+            this.labelsocio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelsocio.Location = new System.Drawing.Point(194, 8);
+            this.labelsocio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelsocio.Name = "labelsocio";
+            this.labelsocio.Size = new System.Drawing.Size(73, 17);
+            this.labelsocio.TabIndex = 304;
+            this.labelsocio.Text = "Conductor";
+            // 
+            // cambiarsocio
+            // 
+            this.cambiarsocio.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cambiarsocio.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.cambiarsocio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cambiarsocio.ForeColor = System.Drawing.Color.Silver;
+            this.cambiarsocio.Location = new System.Drawing.Point(741, 627);
+            this.cambiarsocio.Margin = new System.Windows.Forms.Padding(4);
+            this.cambiarsocio.Name = "cambiarsocio";
+            this.cambiarsocio.Size = new System.Drawing.Size(180, 42);
+            this.cambiarsocio.TabIndex = 305;
+            this.cambiarsocio.Text = "Cambiar socio";
+            this.cambiarsocio.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cambiarsocio.UseVisualStyleBackColor = false;
+            this.cambiarsocio.Click += new System.EventHandler(this.cambiarsocio_Click);
+            // 
+            // cerrarcambio
+            // 
+            this.cerrarcambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cerrarcambio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cerrarcambio.FlatAppearance.BorderSize = 0;
+            this.cerrarcambio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cerrarcambio.Image = global::Autobuses.Properties.Resources.Close;
+            this.cerrarcambio.Location = new System.Drawing.Point(505, 0);
+            this.cerrarcambio.Name = "cerrarcambio";
+            this.cerrarcambio.Size = new System.Drawing.Size(23, 27);
+            this.cerrarcambio.TabIndex = 17;
+            this.cerrarcambio.UseVisualStyleBackColor = true;
+            this.cerrarcambio.Click += new System.EventHandler(this.cerrarcambio_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(89, 29);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(77, 15);
+            this.label13.TabIndex = 326;
+            this.label13.Text = "Socio actual:";
+            // 
+            // socioactual
+            // 
+            this.socioactual.BackColor = System.Drawing.SystemColors.Control;
+            this.socioactual.Location = new System.Drawing.Point(226, 24);
+            this.socioactual.Name = "socioactual";
+            this.socioactual.ReadOnly = true;
+            this.socioactual.Size = new System.Drawing.Size(163, 21);
+            this.socioactual.TabIndex = 306;
+            // 
             // Detallguia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -895,6 +1074,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1001, 740);
+            this.Controls.Add(this.cambiarsocio);
+            this.Controls.Add(this.panelcambiarsocio);
             this.Controls.Add(this.textBoxcomban);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxaportaciones);
@@ -950,6 +1131,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewguias)).EndInit();
             this.BarraTitulo.ResumeLayout(false);
             this.BarraTitulo.PerformLayout();
+            this.panelcambiarsocio.ResumeLayout(false);
+            this.panelcambiarsocio.PerformLayout();
+            this.groupBoxhuellaconductor.ResumeLayout(false);
+            this.groupBoxhuellaconductor.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1034,5 +1221,18 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxcomban;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panelcambiarsocio;
+        private System.Windows.Forms.Label error;
+        private System.Windows.Forms.GroupBox groupBoxhuellaconductor;
+        private System.Windows.Forms.Button acepatrcambio;
+        private System.Windows.Forms.ComboBox comboBoxsocios;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label labelsocio;
+        private System.Windows.Forms.Button cambiarsocio;
+        private System.Windows.Forms.Button cerrarcambio;
+        private System.Windows.Forms.TextBox socioactual;
+        private System.Windows.Forms.Label label13;
     }
 }
