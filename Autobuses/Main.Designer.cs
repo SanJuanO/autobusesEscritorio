@@ -152,6 +152,12 @@
             this.label123 = new System.Windows.Forms.Label();
             this.label124 = new System.Windows.Forms.Label();
             this.label122 = new System.Windows.Forms.Label();
+            this.panelpagoguia = new System.Windows.Forms.Panel();
+            this.pictureBox25 = new System.Windows.Forms.PictureBox();
+            this.panel23 = new System.Windows.Forms.Panel();
+            this.label131 = new System.Windows.Forms.Label();
+            this.label132 = new System.Windows.Forms.Label();
+            this.label133 = new System.Windows.Forms.Label();
             this.zonas = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -304,12 +310,6 @@
             this.label112 = new System.Windows.Forms.Label();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.panelpagoguia = new System.Windows.Forms.Panel();
-            this.pictureBox25 = new System.Windows.Forms.PictureBox();
-            this.panel23 = new System.Windows.Forms.Panel();
-            this.label131 = new System.Windows.Forms.Label();
-            this.label132 = new System.Windows.Forms.Label();
-            this.label133 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxfoto)).BeginInit();
             this.PanelBarraTitulo.SuspendLayout();
@@ -361,6 +361,9 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.panel9.SuspendLayout();
+            this.panelpagoguia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
+            this.panel23.SuspendLayout();
             this.zonas.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -427,9 +430,6 @@
             this.usuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).BeginInit();
             this.panel75.SuspendLayout();
-            this.panelpagoguia.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).BeginInit();
-            this.panel23.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -1937,6 +1937,75 @@
             this.label122.Text = "Boletos Cancelados";
             this.label122.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label122.UseCompatibleTextRendering = true;
+            // 
+            // panelpagoguia
+            // 
+            this.panelpagoguia.BackColor = System.Drawing.Color.White;
+            this.panelpagoguia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelpagoguia.Controls.Add(this.pictureBox25);
+            this.panelpagoguia.Controls.Add(this.panel23);
+            this.panelpagoguia.Location = new System.Drawing.Point(283, 181);
+            this.panelpagoguia.Name = "panelpagoguia";
+            this.panelpagoguia.Size = new System.Drawing.Size(85, 108);
+            this.panelpagoguia.TabIndex = 58;
+            // 
+            // pictureBox25
+            // 
+            this.pictureBox25.Image = global::Autobuses.Properties.Resources.cortecaja;
+            this.pictureBox25.Location = new System.Drawing.Point(18, 38);
+            this.pictureBox25.Name = "pictureBox25";
+            this.pictureBox25.Size = new System.Drawing.Size(45, 52);
+            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox25.TabIndex = 1;
+            this.pictureBox25.TabStop = false;
+            this.pictureBox25.Click += new System.EventHandler(this.pictureBox25_Click);
+            // 
+            // panel23
+            // 
+            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel23.Controls.Add(this.label131);
+            this.panel23.Controls.Add(this.label132);
+            this.panel23.Controls.Add(this.label133);
+            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel23.Location = new System.Drawing.Point(0, 0);
+            this.panel23.Name = "panel23";
+            this.panel23.Size = new System.Drawing.Size(83, 30);
+            this.panel23.TabIndex = 0;
+            // 
+            // label131
+            // 
+            this.label131.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label131.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label131.ForeColor = System.Drawing.Color.White;
+            this.label131.Location = new System.Drawing.Point(-1, -1);
+            this.label131.Name = "label131";
+            this.label131.Size = new System.Drawing.Size(84, 32);
+            this.label131.TabIndex = 4;
+            this.label131.Text = "Reporte Pago Guias";
+            this.label131.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label131.UseCompatibleTextRendering = true;
+            // 
+            // label132
+            // 
+            this.label132.AutoSize = true;
+            this.label132.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label132.ForeColor = System.Drawing.Color.SeaGreen;
+            this.label132.Location = new System.Drawing.Point(24, 69);
+            this.label132.Name = "label132";
+            this.label132.Size = new System.Drawing.Size(57, 20);
+            this.label132.TabIndex = 3;
+            this.label132.Text = "15, 485";
+            // 
+            // label133
+            // 
+            this.label133.AutoSize = true;
+            this.label133.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label133.ForeColor = System.Drawing.Color.White;
+            this.label133.Location = new System.Drawing.Point(21, -50);
+            this.label133.Name = "label133";
+            this.label133.Size = new System.Drawing.Size(67, 20);
+            this.label133.TabIndex = 2;
+            this.label133.Text = "Clientes";
             // 
             // zonas
             // 
@@ -3681,75 +3750,6 @@
             // 
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             // 
-            // panelpagoguia
-            // 
-            this.panelpagoguia.BackColor = System.Drawing.Color.White;
-            this.panelpagoguia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelpagoguia.Controls.Add(this.pictureBox25);
-            this.panelpagoguia.Controls.Add(this.panel23);
-            this.panelpagoguia.Location = new System.Drawing.Point(283, 181);
-            this.panelpagoguia.Name = "panelpagoguia";
-            this.panelpagoguia.Size = new System.Drawing.Size(85, 108);
-            this.panelpagoguia.TabIndex = 58;
-            // 
-            // pictureBox25
-            // 
-            this.pictureBox25.Image = global::Autobuses.Properties.Resources.cortecaja;
-            this.pictureBox25.Location = new System.Drawing.Point(18, 38);
-            this.pictureBox25.Name = "pictureBox25";
-            this.pictureBox25.Size = new System.Drawing.Size(45, 52);
-            this.pictureBox25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox25.TabIndex = 1;
-            this.pictureBox25.TabStop = false;
-            this.pictureBox25.Click += new System.EventHandler(this.pictureBox25_Click);
-            // 
-            // panel23
-            // 
-            this.panel23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel23.Controls.Add(this.label131);
-            this.panel23.Controls.Add(this.label132);
-            this.panel23.Controls.Add(this.label133);
-            this.panel23.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel23.Location = new System.Drawing.Point(0, 0);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(83, 30);
-            this.panel23.TabIndex = 0;
-            // 
-            // label131
-            // 
-            this.label131.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label131.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label131.ForeColor = System.Drawing.Color.White;
-            this.label131.Location = new System.Drawing.Point(-1, -1);
-            this.label131.Name = "label131";
-            this.label131.Size = new System.Drawing.Size(84, 32);
-            this.label131.TabIndex = 4;
-            this.label131.Text = "Reporte Pago Guias";
-            this.label131.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label131.UseCompatibleTextRendering = true;
-            // 
-            // label132
-            // 
-            this.label132.AutoSize = true;
-            this.label132.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label132.ForeColor = System.Drawing.Color.SeaGreen;
-            this.label132.Location = new System.Drawing.Point(24, 69);
-            this.label132.Name = "label132";
-            this.label132.Size = new System.Drawing.Size(57, 20);
-            this.label132.TabIndex = 3;
-            this.label132.Text = "15, 485";
-            // 
-            // label133
-            // 
-            this.label133.AutoSize = true;
-            this.label133.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label133.ForeColor = System.Drawing.Color.White;
-            this.label133.Location = new System.Drawing.Point(21, -50);
-            this.label133.Name = "label133";
-            this.label133.Size = new System.Drawing.Size(67, 20);
-            this.label133.TabIndex = 2;
-            this.label133.Text = "Clientes";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3832,6 +3832,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.panelpagoguia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
+            this.panel23.ResumeLayout(false);
+            this.panel23.PerformLayout();
             this.zonas.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -3920,10 +3924,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox44)).EndInit();
             this.panel75.ResumeLayout(false);
             this.panel75.PerformLayout();
-            this.panelpagoguia.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox25)).EndInit();
-            this.panel23.ResumeLayout(false);
-            this.panel23.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -8,7 +8,8 @@ using iTextSharp.text.pdf;
 using Json.Net;
 using MyAttendance;
     using System;
-    using System.Collections.Generic;
+using System.Collections;
+using System.Collections.Generic;
     using System.ComponentModel;
 using System.Configuration;
 using System.Data;
@@ -34,6 +35,9 @@ namespace Autobuses.Planeacion
         Bitmap imagen;
         private string _clase = "guiapagos";
         private int n = 0;
+        private int permitirpagoscount = 0;
+        ArrayList listacorte = new ArrayList();
+
         private string dia;
         private string folio;
         private string folioguia;
@@ -165,12 +169,6 @@ namespace Autobuses.Planeacion
             try {
                 int n = e.RowIndex;
 
-                if (n != -1)
-                {
-
-                    pk_guia = (string)dataGridViewguias.Rows[n].Cells[28].Value;
-                    iradetalle();
-                }
 
             }
             catch (Exception err)
@@ -253,6 +251,11 @@ namespace Autobuses.Planeacion
                 string sql = "SELECT LINEA,PK1 FROM LINEAS WHERE BORRADO=0";
                 db.PreparedSQL(sql);
                 res = db.getTable();
+                ComboboxItem item0 = new ComboboxItem();
+                item0.Text = "Todas";
+                item0.Value = 0;
+
+                comboBoxlinea.Items.Add(item0);
 
                 while (res.Next())
                 {
@@ -1084,6 +1087,7 @@ namespace Autobuses.Planeacion
                         dataGridViewguias.Rows[n].Cells[24].Value = res.Get("LINEA");
                         dataGridViewguias.Rows[n].Cells[25].Value = res.Get("HORA");
                         dataGridViewguias.Rows[n].Cells[26].Value = res.Get("SOCIO");
+                        dataGridViewguias.Rows[n].Cells["Agregar"].Value =true;
 
 
 
@@ -1141,7 +1145,9 @@ namespace Autobuses.Planeacion
                 }
                 else
                 {
-                    MessageBox.Show("Una guia  marcada en rojo no ha realizado corte");
+                    Form mensaje = new Mensaje("No se puede pagar la guia marcada en rojo por que no se tiene corte", true);
+                    mensaje.ShowDialog();
+
                 }
             }
             else
@@ -1444,7 +1450,7 @@ namespace Autobuses.Planeacion
                 {
                     usuario = "super contraseña";
                 }
-                cantidadfolios = dataGridViewguias.Rows.Count;
+                cantidadfolios = int.Parse( textBoxguias.Text);
                 folio = GenerateRandom();
 
                 if (cantidadfolios > 0)
@@ -1518,32 +1524,36 @@ namespace Autobuses.Planeacion
         async Task RunAsync(NotificationDataModel data)
         {
 
-            var myContent = JsonNet.Serialize(data);
-            var stringContent = new StringContent(myContent, UnicodeEncoding.UTF8, "application/json");
+            //var myContent = JsonNet.Serialize(data);
+            //var stringContent = new StringContent(myContent, UnicodeEncoding.UTF8, "application/json");
 
-            HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("https://localhost:44333/api/SendPushNotificationPartners/");
-            client.BaseAddress = new Uri("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            try
-            {
-                var responsevar = "";
-                HttpResponseMessage response = await client.PostAsync("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/", stringContent);
-                //HttpResponseMessage response = await client.PostAsync("https://localhost:44333/api/SendPushNotificationPartners/", stringContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    responsevar = await response.Content.ReadAsStringAsync();
-                }
-                Respuesta res = JsonNet.Deserialize<Respuesta>(responsevar);
+            //HttpClient client = new HttpClient();
+            ////client.BaseAddress = new Uri("https://localhost:44333/api/SendPushNotificationPartners/");
+            ////client.BaseAddress = new Uri("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/");
+            //client.BaseAddress = new Uri("https://appis.atah.online/api/SendPushNotificationPartners/");
 
-                //  MessageBox.Show(res.mensaje);
-            }
-            catch (Exception e)
-            {
-                string error = e.Message;
-                MessageBox.Show("Error con el servicio intente màs tarde");
-            }
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //try
+            //{
+            //    var responsevar = "";
+            //    HttpResponseMessage response = await client.PostAsync("https://appis.atah.online/api/SendPushNotificationPartners/", stringContent);
+
+            //    // HttpResponseMessage response = await client.PostAsync("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/", stringContent);
+            //    //HttpResponseMessage response = await client.PostAsync("https://localhost:44333/api/SendPushNotificationPartners/", stringContent);
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        responsevar = await response.Content.ReadAsStringAsync();
+            //    }
+            //    Respuesta res = JsonNet.Deserialize<Respuesta>(responsevar);
+
+            //    //  MessageBox.Show(res.mensaje);
+            //}
+            //catch (Exception e)
+            //{
+            //    string error = e.Message;
+            //    MessageBox.Show("Error con el servicio intente màs tarde");
+            //}
 
         }
 
@@ -1703,12 +1713,23 @@ namespace Autobuses.Planeacion
         private void inicio()
         
         {
-            string sql = "SELECT top(1) CONVERT(VARCHAR(10),FECHA,120) AS FECHA FROM VTOTAL_GUIA_DETALLE where pksocio=@pksocio  and linea=@linea order by FECHA asc";
-            db.PreparedSQL(sql);
-            db.command.Parameters.AddWithValue("@pksocio", pksocio);
-           
-            db.command.Parameters.AddWithValue("@linea", _linea);
 
+            if (_linea == "Todas")
+            {
+                string sql = "SELECT top(1) CONVERT(VARCHAR(10),FECHA,120) AS FECHA FROM VTOTAL_GUIA_DETALLE where pksocio=@pksocio  order by FECHA asc";
+                db.PreparedSQL(sql);
+                db.command.Parameters.AddWithValue("@pksocio", pksocio);
+
+            }
+            else
+            {
+                string sql = "SELECT top(1) CONVERT(VARCHAR(10),FECHA,120) AS FECHA FROM VTOTAL_GUIA_DETALLE where pksocio=@pksocio  and linea=@linea order by FECHA asc";
+                db.PreparedSQL(sql);
+                db.command.Parameters.AddWithValue("@pksocio", pksocio);
+
+                db.command.Parameters.AddWithValue("@linea", _linea);
+
+            }
             res = db.getTable();
 
             if (res.Next())
@@ -1731,6 +1752,9 @@ namespace Autobuses.Planeacion
         {
             try
             {
+                permitirpagos = true;
+                permitirpagoscount = 0;
+                listacorte.Clear();
                 textBoximport.Text = "$" + 0;
                 textBoxgastos.Text = "$" + 0;
                 textBoxtarjetas.Text = "$" + 0;
@@ -1741,14 +1765,31 @@ namespace Autobuses.Planeacion
                 dispototal.Text = "$" + 0;
                 dispoguias.Text = "$" + 0;
                 disptotal.Text = "$" + 0;
-                string sql = "SELECT  CONVERT(REAL,IMPORTE) AS IMPORTE,CONVERT(REAL,COMPBAN) AS COMPBAN,CONVERT(REAL,TSALIDA) AS TSALIDA,CONVERT(REAL,TTURNO) AS TTURNO,CONVERT(REAL,TPASO) AS TPASO," +
-                    "CONVERT(REAL,IVA) AS IVA,CONVERT(REAL,ANTICIPO) AS ANTICIPO,CONVERT(REAL,TOTAL) AS TOTAL,FECHA,FOLIO,STATUS,ORIGEN,DESTINO,AUTOBUS,BOLETOS,COMTAQ," +
-                    "CONVERT(REAL,APORTACION) AS APORTACION,DIESEL,CASETA,VSEDENA,HORA,VALIDADOR,CHOFER,LINEA,SOCIO,PK,PKCORTECAJA FROM GUIA WHERE PK in (SELECT PK FROM VTOTAL_GUIA_DETALLE where" +
-                    " pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHATERMINO) AND LINEA=@linea ORDER BY PK";
-                db.PreparedSQL(sql);
-                db.command.Parameters.AddWithValue("@pksocio", pksocio);
-                db.command.Parameters.AddWithValue("@FECHATERMINO", fechatermino);
-                db.command.Parameters.AddWithValue("@linea", _linea);
+
+                if (_linea == "Todas")
+                {
+                    string sql = "SELECT  CONVERT(REAL,IMPORTE) AS IMPORTE,CONVERT(REAL,COMPBAN) AS COMPBAN,CONVERT(REAL,TSALIDA) AS TSALIDA,CONVERT(REAL,TTURNO) AS TTURNO,CONVERT(REAL,TPASO) AS TPASO," +
+                                            "CONVERT(REAL,IVA) AS IVA,CONVERT(REAL,ANTICIPO) AS ANTICIPO,CONVERT(REAL,TOTAL) AS TOTAL,FECHA,FOLIO,STATUS,ORIGEN,DESTINO,AUTOBUS,BOLETOS,COMTAQ," +
+                                            "CONVERT(REAL,APORTACION) AS APORTACION,DIESEL,CASETA,VSEDENA,HORA,VALIDADOR,CHOFER,LINEA,SOCIO,PK,PKCORTECAJA FROM GUIA WHERE PK in (SELECT PK FROM VTOTAL_GUIA_DETALLE where" +
+                                            " pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHATERMINO) ORDER BY PK";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@pksocio", pksocio);
+                    db.command.Parameters.AddWithValue("@FECHATERMINO", fechatermino);
+
+                }
+                else
+                {
+                    string sql = "SELECT  CONVERT(REAL,IMPORTE) AS IMPORTE,CONVERT(REAL,COMPBAN) AS COMPBAN,CONVERT(REAL,TSALIDA) AS TSALIDA,CONVERT(REAL,TTURNO) AS TTURNO,CONVERT(REAL,TPASO) AS TPASO," +
+                        "CONVERT(REAL,IVA) AS IVA,CONVERT(REAL,ANTICIPO) AS ANTICIPO,CONVERT(REAL,TOTAL) AS TOTAL,FECHA,FOLIO,STATUS,ORIGEN,DESTINO,AUTOBUS,BOLETOS,COMTAQ," +
+                        "CONVERT(REAL,APORTACION) AS APORTACION,DIESEL,CASETA,VSEDENA,HORA,VALIDADOR,CHOFER,LINEA,SOCIO,PK,PKCORTECAJA FROM GUIA WHERE PK in (SELECT PK FROM VTOTAL_GUIA_DETALLE where" +
+                        " pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHATERMINO) AND LINEA=@linea ORDER BY PK";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@pksocio", pksocio);
+                    db.command.Parameters.AddWithValue("@FECHATERMINO", fechatermino);
+                    db.command.Parameters.AddWithValue("@linea", _linea);
+
+
+                }
 
                 res = db.getTable();
                 foliosporpagar.Clear();
@@ -1760,6 +1801,8 @@ namespace Autobuses.Planeacion
                     if (string.IsNullOrEmpty(pkcorte))
                     {
                         permitirpagos = false;
+                        permitirpagoscount = permitirpagoscount + 1;
+                        listacorte.Add(res.Get("PK"));
                        Color colorActual = Color.FromName("Red");
 
                         dataGridViewguias.Rows[n].DefaultCellStyle.BackColor = colorActual;
@@ -1824,7 +1867,8 @@ namespace Autobuses.Planeacion
                     dataGridViewguias.Rows[n].Cells[26].Value = res.Get("HORA");
                     dataGridViewguias.Rows[n].Cells[27].Value = res.Get("SOCIO");
                     dataGridViewguias.Rows[n].Cells[28].Value = res.Get("PK");
-            
+                    dataGridViewguias.Rows[n].Cells[36].Value = true;
+
                 }
 
 
@@ -1887,12 +1931,24 @@ namespace Autobuses.Planeacion
         }
         private void dispo()
         {
-            string sql = "SELECT SUM(CONVERT(REAL,TOTAL)) AS TOTAL,SUM(CANTIDAD_GUIAS) AS CANTIDAD_GUIAS FROM VTOTAL_GUIA where linea=@linea AND PKSOCIO=@pksocio ";
-            db.PreparedSQL(sql);
-            db.command.Parameters.AddWithValue("@pksocio", pksocio);
-           
-            db.command.Parameters.AddWithValue("@linea", _linea);
 
+            if (_linea == "Todas")
+            {
+                string sql = "SELECT SUM(CONVERT(REAL,TOTAL)) AS TOTAL,SUM(CANTIDAD_GUIAS) AS CANTIDAD_GUIAS FROM VTOTAL_GUIA where  PKSOCIO=@pksocio ";
+                db.PreparedSQL(sql);
+                db.command.Parameters.AddWithValue("@pksocio", pksocio);
+
+
+            }
+            else
+            {
+                string sql = "SELECT SUM(CONVERT(REAL,TOTAL)) AS TOTAL,SUM(CANTIDAD_GUIAS) AS CANTIDAD_GUIAS FROM VTOTAL_GUIA where linea=@linea AND PKSOCIO=@pksocio ";
+                db.PreparedSQL(sql);
+                db.command.Parameters.AddWithValue("@pksocio", pksocio);
+
+                db.command.Parameters.AddWithValue("@linea", _linea);
+
+            }
             res = db.getTable();
 
             cantidaddispo = 0;
@@ -1907,13 +1963,23 @@ namespace Autobuses.Planeacion
             dispototal.Text = Utilerias.Utilerias.formatCurrency(totaldispo);
             dispoguias.Text = cantidaddispo.ToString();
 
+            if (_linea == "Todas")
+            {
+                string sql2 = "SELECT count(*) as CANTIDAD, sum(CONVERT(FLOAT,TOTAL)) AS TOTAL FROM VTOTAL_GUIA_DETALLE where pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHA";
+                db.PreparedSQL(sql2);
+                db.command.Parameters.AddWithValue("@pksocio", pksocio);
+                db.command.Parameters.AddWithValue("@FECHA", fechadispo);
+            }
+            else
+            {
 
-            string sql2 = "SELECT count(*) as CANTIDAD, sum(CONVERT(FLOAT,TOTAL)) AS TOTAL FROM VTOTAL_GUIA_DETALLE where linea=@linea and pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHA";
-            db.PreparedSQL(sql2);
-            db.command.Parameters.AddWithValue("@pksocio", pksocio);
-            db.command.Parameters.AddWithValue("@FECHA", fechadispo);
-            db.command.Parameters.AddWithValue("@linea", _linea);
+                string sql2 = "SELECT count(*) as CANTIDAD, sum(CONVERT(FLOAT,TOTAL)) AS TOTAL FROM VTOTAL_GUIA_DETALLE where linea=@linea and pksocio=@pksocio and Convert(varchar(10),FECHA,120)<=@FECHA";
+                db.PreparedSQL(sql2);
+                db.command.Parameters.AddWithValue("@pksocio", pksocio);
+                db.command.Parameters.AddWithValue("@FECHA", fechadispo);
+                db.command.Parameters.AddWithValue("@linea", _linea);
 
+            }
             res = db.getTable();
             cantidaddetalle = 0;
             totaldetalle = 0;
@@ -1958,7 +2024,7 @@ namespace Autobuses.Planeacion
             getDatosAdicionalessocios();
                 getDatosAdicionaleslinea();
 
-            titulo.Text = "Reporte y Pagos de Guias";
+            titulo.Text = "Pagos de Guias";
                 permisos();
                 btnpagar.Enabled = false;
             btnpagar.BackColor = Color.White;
@@ -2374,6 +2440,165 @@ namespace Autobuses.Planeacion
 
         private void dataGridViewguias_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            try
+            {
+
+
+                n = e.RowIndex;
+                int c = e.ColumnIndex;
+                if (n >= 0)
+                {
+                    if (c == 36)
+                    {
+
+                        DataGridViewCheckBoxCell chk = (DataGridViewCheckBoxCell)dataGridViewguias.Rows[n].Cells[c];
+
+
+                        if (chk.Selected == true)
+
+                        {
+                            string value = dataGridViewguias.Rows[n].Cells[36].Value.ToString();
+                         
+
+
+                            if (value == "True")
+                            {
+                                dataGridViewguias.Rows[n].Cells[36].Value = false;
+
+                                Form mensaje = new Mensaje("no se pagara esta guia", true);
+                                mensaje.ShowDialog();
+
+
+                                importetext = importetext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells["importedname"].Value);
+                                gastostext = gastostext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells["gastosdname"].Value);
+                                tarjetastext = tarjetastext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells[14].Value);
+                                tarjetastext = tarjetastext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells[15].Value);
+                                tarjetastext = tarjetastext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells[16].Value);
+                                ivatext = ivatext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells["ivadname"].Value);
+                                totaltext = totaltext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells["totaldname"].Value);
+                                compbancotext = compbancotext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells["combandname"].Value);
+                                aportaciontext = aportaciontext - Convert.ToDouble(dataGridViewguias.Rows[n].Cells["aportaciodname"].Value);
+                                // pagadooactivo = (string)dataGridViewguias.Rows[n].Cells[2].Value;
+
+                                foliosporpagar.Remove(dataGridViewguias.Rows[n].Cells[1].Value.ToString());
+
+                                
+                                pkporpagar.Remove(dataGridViewguias.Rows[n].Cells["guia_pk"].Value.ToString());
+
+
+
+                                btnpagar.Enabled = true;
+                                btnpagar.BackColor = Color.FromArgb(38, 45, 56);
+
+                                if (listacorte.Contains(dataGridViewguias.Rows[n].Cells["guia_pk"].Value))
+                                {
+                                    permitirpagoscount = permitirpagoscount - 1;
+                                }
+
+                                if (permitirpagoscount == 0)
+                                {
+                                    permitirpagos = true;
+                                }
+
+                                textBoximport.Text = Utilerias.Utilerias.formatCurrency(importetext);
+                                textBoxgastos.Text = Utilerias.Utilerias.formatCurrency(gastostext);
+                                textBoxtarjetas.Text = Utilerias.Utilerias.formatCurrency(tarjetastext);
+                                textBoxiva.Text = Utilerias.Utilerias.formatCurrency(ivatext);
+                                textBoxtotal.Text = Utilerias.Utilerias.formatCurrency(totaltext);
+                                textBoxaportacion.Text = Utilerias.Utilerias.formatCurrency(aportaciontext);
+                                textBoxcompbanco.Text = Utilerias.Utilerias.formatCurrency(compbancotext);
+                                textBoxguias.Text =(int.Parse(textBoxguias.Text)-1).ToString() ;
+                                
+                                dispo();
+
+
+
+
+                            }
+                            else
+                            {
+
+                                dataGridViewguias.Rows[n].Cells[36].Value = true;
+                                Form mensaje = new Mensaje("Se pagara esta guia", true);
+                                mensaje.ShowDialog();
+                                importetext = importetext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells["importedname"].Value);
+                                gastostext = gastostext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells["gastosdname"].Value);
+                                tarjetastext = tarjetastext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells[14].Value);
+                                tarjetastext = tarjetastext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells[15].Value);
+                                tarjetastext = tarjetastext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells[16].Value);
+                                ivatext = ivatext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells["ivadname"].Value);
+                                totaltext = totaltext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells["totaldname"].Value);
+                                compbancotext = compbancotext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells["combandname"].Value);
+                                aportaciontext = aportaciontext + Convert.ToDouble(dataGridViewguias.Rows[n].Cells["aportaciodname"].Value);
+                                textBoxguias.Text = (int.Parse(textBoxguias.Text) + 1).ToString();
+
+                                // pagadooactivo = (string)dataGridViewguias.Rows[n].Cells[2].Value;
+
+                                foliosporpagar.Add(dataGridViewguias.Rows[n].Cells[1].Value.ToString());
+
+
+                                pkporpagar.Add(dataGridViewguias.Rows[n].Cells["guia_pk"].Value.ToString());
+
+
+
+                                btnpagar.Enabled = true;
+                                btnpagar.BackColor = Color.FromArgb(38, 45, 56);
+
+                                if (listacorte.Contains(dataGridViewguias.Rows[n].Cells["guia_pk"].Value))
+                                {
+                                    permitirpagoscount = permitirpagoscount + 1;
+                                }
+
+                                if (permitirpagoscount != 0)
+                                {
+                                    permitirpagos = false;
+                                }
+
+                                textBoximport.Text = Utilerias.Utilerias.formatCurrency(importetext);
+                                textBoxgastos.Text = Utilerias.Utilerias.formatCurrency(gastostext);
+                                textBoxtarjetas.Text = Utilerias.Utilerias.formatCurrency(tarjetastext);
+                                textBoxiva.Text = Utilerias.Utilerias.formatCurrency(ivatext);
+                                textBoxtotal.Text = Utilerias.Utilerias.formatCurrency(totaltext);
+                                textBoxaportacion.Text = Utilerias.Utilerias.formatCurrency(aportaciontext);
+                                textBoxcompbanco.Text = Utilerias.Utilerias.formatCurrency(compbancotext);
+                                dispo();
+
+
+
+                            }
+
+
+
+
+                        }
+                        else
+                        {
+                            Form mensaje3 = new Mensaje("false", true);
+                            mensaje3.ShowDialog();
+
+                            dataGridViewguias.Refresh();
+                        }
+                    }
+
+                    else
+                    {
+                        pk_guia = (string)dataGridViewguias.Rows[n].Cells[28].Value;
+                        iradetalle();
+                    }
+                }
+
+            }
+            catch (Exception err)
+            {
+                string error = err.Message;
+                string funcion = "check";
+
+                Form mensajeo = new Mensaje(error, true);
+                mensajeo.ShowDialog();
+                Utilerias.LOG.write(_clase, funcion, error);
+            }
+
+
 
         }
 

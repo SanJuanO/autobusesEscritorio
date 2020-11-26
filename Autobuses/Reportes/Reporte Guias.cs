@@ -271,7 +271,14 @@ using System.Text;
                     db.PreparedSQL(sql);
                     res = db.getTable();
 
-                    while (res.Next())
+                ComboboxItem item0 = new ComboboxItem();
+                item0.Text = "Todas";
+                item0.Value = 0;
+
+                comboBoxlinea.Items.Add(item0);
+
+
+                while (res.Next())
                     {
                         ComboboxItem item = new ComboboxItem();
                         item.Text = res.Get("LINEA");
@@ -419,10 +426,16 @@ using System.Text;
                     {
 
                         _conductor = comboconductor.SelectedItem.ToString();
-                        //ValidateUserGUIA();
+                        //ValidateUserGUIA();  
+
 
                     }
+                if (_linea == "Todas")
+                {
+                    getRowslineatodas(_status, _socio, _conductor, _autobus, fechainicio, fechatermino);
 
+                }
+                else
 
                     getRows(_status, _socio, _conductor, _autobus, fechainicio,fechatermino);
                 }
@@ -440,9 +453,306 @@ using System.Text;
             }
 
 
+        public void getRowslineatodas(string status = "", string socio = "", string conductor = "", string autobus = "", string ini = "", string ter = "")
+        {
+            try
+            {
+                int count = 1;
+                string sql = "SELECT * FROM GUIA";
 
-        
-            public void getRows(string status = "", string socio = "", string conductor = "", string autobus = "", string ini = "",string ter="")
+                if (status != "" && socio != "" && conductor != "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND SOCIO=@SOCIO AND CHOFER=@CONDUCTOR AND AUTOBUS=@AUTOBUS ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+                }
+                //1
+                if (status == "" && socio != "" && conductor != "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND SOCIO=@SOCIO AND CHOFER=@CONDUCTOR AND AUTOBUS=@AUTOBUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+
+                }
+                //2
+                if (status != "" && socio == "" && conductor != "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND CHOFER=@CONDUCTOR AND AUTOBUS=@AUTOBUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+
+                }
+                //3
+                if (status == "" && socio == "" && conductor != "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND CHOFER=@CONDUCTOR AND AUTOBUS=@AUTOBUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+                }
+                //4
+                if (status != "" && socio != "" && conductor == "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND SOCIO=@SOCIO AND AUTOBUS=@AUTOBUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+
+                }
+                //5
+                if (status == "" && socio != "" && conductor == "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND SOCIO=@SOCIO AND AUTOBUS=@AUTOBUS ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+                }
+                //6
+                if (status != "" && socio == "" && conductor == "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND AUTOBUS=@AUTOBUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+                }
+                //7
+                if (status == "" && socio == "" && conductor == "" && autobus != "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND AUTOBUS=@AUTOBUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@AUTOBUS", autobus);
+
+                }
+                //8
+                if (status != "" && socio != "" && conductor != "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND SOCIO=@SOCIO AND CHOFER=@CONDUCTOR ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+
+                }
+                //9
+                if (status == "" && socio != "" && conductor != "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND SOCIO=@SOCIO AND CHOFER=@CONDUCTOR ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+
+                }
+                //10
+                if (status != "" && socio == "" && conductor != "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND CHOFER=@CONDUCTOR ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+
+                }
+                //11
+                if (status == "" && socio == "" && conductor != "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        " AND CHOFER=@CONDUCTOR ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+
+                }
+                //12
+                if (status != "" && socio != "" && conductor == "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS AND SOCIO=@SOCIO ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@CONDUCTOR", conductor);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+
+                }
+
+                //13
+                if (status == "" && socio != "" && conductor == "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND SOCIO=@SOCIO ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@SOCIO", socio);
+
+                }
+                //14
+                if (status != "" && socio == "" && conductor == "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND STATUS=@STATUS";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+                    db.command.Parameters.AddWithValue("@STATUS", status);
+
+                }
+                //15
+                if (status == "" && socio == "" && conductor == "" && autobus == "" && ini != "" && ter != "")
+                {
+                    sql += " WHERE  CONVERT(DATETIME, FECHA,103) BETWEEN CONVERT(DATETIME, @INICIO, 103) AND CONVERT(DATETIME, @FINAL, 103) " +
+                        "AND AUTOBUS=@AUTOBUS ";
+                    db.PreparedSQL(sql);
+                    db.command.Parameters.AddWithValue("@INICIO", ini);
+                    db.command.Parameters.AddWithValue("@FINAL", ter);
+
+                }
+
+
+
+
+                res = db.getTable();
+
+                bool pagarsepuede = false;
+                importetext = 0.0;
+                gastostext = 0.0;
+                tarjetastext = 0.0;
+                ivatext = 0.0;
+                totaltext = 0.0;
+
+
+                while (res.Next())
+                {
+                    n = dataGridViewguias.Rows.Add();
+
+
+                    dataGridViewguias.Rows[n].Cells["dianame"].Value = res.Get("FECHA");
+                    dataGridViewguias.Rows[n].Cells["folioname"].Value = res.Get("FOLIO");
+                    dataGridViewguias.Rows[n].Cells["estadoname"].Value = res.Get("STATUS");
+                    dataGridViewguias.Rows[n].Cells["origenname"].Value = res.Get("ORIGEN");
+                    dataGridViewguias.Rows[n].Cells["destinoname"].Value = res.Get("DESTINO");
+                    string fech = res.Get("HORA");
+                    //  dataGridViewguias.Rows[n].Cells[5].Value = res.Get("FECHA") + " " + fech;
+                    dataGridViewguias.Rows[n].Cells["autobusname"].Value = res.Get("AUTOBUS");
+                    dataGridViewguias.Rows[n].Cells["boletoname"].Value = res.Get("BOLETOS");
+
+
+                    double impr = (double.TryParse(res.Get("IMPORTE"), out double aux1)) ? res.GetDouble("IMPORTE") : 0.0;
+                    double compbanr = (double.TryParse(res.Get("COMPBAN"), out double aux2)) ? res.GetDouble("COMPBAN") : 0.0;
+                    double tsalidar = (double.TryParse(res.Get("TSALIDA"), out double aux3)) ? res.GetDouble("TSALIDA") : 0.0;
+                    double tturnor = (double.TryParse(res.Get("TTURNO"), out double aux4)) ? res.GetDouble("TTURNO") : 0.0;
+                    double ttpasor = (double.TryParse(res.Get("TPASO"), out double aux5)) ? res.GetDouble("TPASO") : 0.0;
+                    double ivar = (double.TryParse(res.Get("IVA"), out double aux6)) ? res.GetDouble("IVA") : 0.0;
+                    double anticipor = (double.TryParse(res.Get("ANTICIPO"), out double aux7)) ? res.GetDouble("ANTICIPO") : 0.0;
+                    double totalr = (double.TryParse(res.Get("TOTAL"), out double aux9)) ? res.GetDouble("TOTAL") : 0.0;
+                    double aportacionr = (double.TryParse(res.Get("APORTACION"), out double aux11)) ? res.GetDouble("APORTACION") : 0.0;
+
+                    dataGridViewguias.Rows[n].Cells["importename"].Value = Utilerias.Utilerias.formatCurrency(impr);
+                    dataGridViewguias.Rows[n].Cells[8].Value = res.Get("COMTAQ");
+                    dataGridViewguias.Rows[n].Cells[9].Value = Utilerias.Utilerias.formatCurrency(compbanr);
+                    dataGridViewguias.Rows[n].Cells[10].Value = Utilerias.Utilerias.formatCurrency(aportacionr);
+                    dataGridViewguias.Rows[n].Cells[11].Value = res.Get("DIESEL");
+                    dataGridViewguias.Rows[n].Cells[12].Value = res.Get("CASETA");
+                    dataGridViewguias.Rows[n].Cells["salidaname"].Value = Utilerias.Utilerias.formatCurrency(tsalidar);
+                    dataGridViewguias.Rows[n].Cells["turnoname"].Value = Utilerias.Utilerias.formatCurrency(tturnor);
+                    dataGridViewguias.Rows[n].Cells["pasoname"].Value = Utilerias.Utilerias.formatCurrency(ttpasor);
+                    //dataGridViewguias.Rows[n].Cells[16].Value = res.Get("VSEDENA");
+                    dataGridViewguias.Rows[n].Cells["ivaname"].Value = Utilerias.Utilerias.formatCurrency(ivar);
+                    dataGridViewguias.Rows[n].Cells["gastosname"].Value = Utilerias.Utilerias.formatCurrency(anticipor);
+                    dataGridViewguias.Rows[n].Cells["totalname"].Value = Utilerias.Utilerias.formatCurrency(totalr);
+                    dataGridViewguias.Rows[n].Cells["sucursalname"].Value = res.Get("SUCURSAL");
+                    dataGridViewguias.Rows[n].Cells["validadorname"].Value = res.Get("validador");
+                    dataGridViewguias.Rows[n].Cells["chofername"].Value = res.Get("CHOFER");
+                    dataGridViewguias.Rows[n].Cells["lineaname"].Value = res.Get("LINEA");
+                    dataGridViewguias.Rows[n].Cells["horaname"].Value = res.Get("HORA");
+                    dataGridViewguias.Rows[n].Cells["socioname"].Value = res.Get("SOCIO");
+                    dataGridViewguias.Rows[n].Cells["pkname"].Value = res.Get("PK");
+
+
+                    importetext += impr;
+                    gastostext += anticipor;
+                    tarjetastext += tturnor;
+                    tarjetastext += tsalidar;
+                    tarjetastext += ttpasor;
+                    ivatext += ivar;
+                    totaltext += totalr;
+                    pagadooactivo = (string)dataGridViewguias.Rows[n].Cells[2].Value;
+                    if (pagadooactivo == "PAGADA")
+                    {
+                        pagarsepuede = true;
+                    }
+
+                    count++;
+                }
+
+
+
+
+
+            }
+            catch (Exception err)
+            {
+                string error = err.Message;
+                MessageBox.Show("Ocurrio un Error, intente de nuevo.");
+                string funcion = "getRows";
+                Utilerias.LOG.write(_clase, funcion, error);
+
+
+            }
+
+        }
+
+
+        public void getRows(string status = "", string socio = "", string conductor = "", string autobus = "", string ini = "",string ter="")
             {
                 try
                 {
@@ -1100,8 +1410,13 @@ using System.Text;
                 }
 
             }
-            private void Buscarfolio_Click(object sender, EventArgs e) { 
-                act();
+            private void Buscarfolio_Click(object sender, EventArgs e) {
+            act();
+
+
+
+
+
             }
 
            
@@ -1111,7 +1426,9 @@ using System.Text;
             }
             private void limp()
             {
-                combostatus.Enabled = false;
+            textBoxfolio.Text = "";
+
+            combostatus.Enabled = false;
                 combosocio.Enabled = false;
                 comboconductor.Enabled = false;
                 comboautobus.Enabled = false;
@@ -1128,8 +1445,27 @@ using System.Text;
                
         
             }
+        private void limp2()
+        {
+            combostatus.Enabled = false;
+            combosocio.Enabled = false;
+            comboconductor.Enabled = false;
+            comboautobus.Enabled = false;
 
-            private void Reporte_Guias_Load(object sender, EventArgs e)
+            comboconductor.Text = null;
+            comboautobus.Text = null;
+            combosocio.Text = null;
+            combostatus.Text = null;
+            comboBoxlinea.Text = "";
+            sucursalbusqueda = "";
+            dataGridViewguias.Rows.Clear();
+            comboBoxlinea.Items.Clear();
+            getDatosAdicionaleslinea();
+
+
+        }
+
+        private void Reporte_Guias_Load(object sender, EventArgs e)
             {
                 this.WindowState = FormWindowState.Maximized;
 
@@ -1173,6 +1509,7 @@ using System.Text;
          
             pictureBoxfoto.Image = bmp;
             timer1.Start();
+            textBoxfolio.Focus();
         }
 
             private void ComboBoxlinea_SelectedIndexChanged(object sender, EventArgs e)
@@ -1183,9 +1520,9 @@ using System.Text;
                 comboautobus.Enabled = true;
                 _linea = comboBoxlinea.SelectedItem.ToString();
 
-            }
+        }
 
-            private void ToolStripExportExcel_Click(object sender, EventArgs e)
+        private void ToolStripExportExcel_Click(object sender, EventArgs e)
             {
                 Utilerias.Utilerias.ExportarDataGridViewExcel(dataGridViewguias);
 
@@ -1263,6 +1600,116 @@ using System.Text;
             SendMessage(this.Handle, 0x112, 0xf012, 0); ReleaseCapture();
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            try {
+                string foliotempo = textBoxfolio.Text;
+                limp2();
+               string sql = "SELECT* FROM GUIA WHERE  FOLIO=@FOLIO ";
+                db.PreparedSQL(sql);
+                db.command.Parameters.AddWithValue("@FOLIO", foliotempo);
+
+           
+
+
+
+
+            res = db.getTable();
+
+            bool pagarsepuede = false;
+            importetext = 0.0;
+            gastostext = 0.0;
+            tarjetastext = 0.0;
+            ivatext = 0.0;
+            totaltext = 0.0;
+
+
+            while (res.Next())
+            {
+                n = dataGridViewguias.Rows.Add();
+
+
+                dataGridViewguias.Rows[n].Cells["dianame"].Value = res.Get("FECHA");
+                dataGridViewguias.Rows[n].Cells["folioname"].Value = res.Get("FOLIO");
+                dataGridViewguias.Rows[n].Cells["estadoname"].Value = res.Get("STATUS");
+                dataGridViewguias.Rows[n].Cells["origenname"].Value = res.Get("ORIGEN");
+                dataGridViewguias.Rows[n].Cells["destinoname"].Value = res.Get("DESTINO");
+                string fech = res.Get("HORA");
+                //  dataGridViewguias.Rows[n].Cells[5].Value = res.Get("FECHA") + " " + fech;
+                dataGridViewguias.Rows[n].Cells["autobusname"].Value = res.Get("AUTOBUS");
+                dataGridViewguias.Rows[n].Cells["boletoname"].Value = res.Get("BOLETOS");
+
+
+                double impr = (double.TryParse(res.Get("IMPORTE"), out double aux1)) ? res.GetDouble("IMPORTE") : 0.0;
+                double compbanr = (double.TryParse(res.Get("COMPBAN"), out double aux2)) ? res.GetDouble("COMPBAN") : 0.0;
+                double tsalidar = (double.TryParse(res.Get("TSALIDA"), out double aux3)) ? res.GetDouble("TSALIDA") : 0.0;
+                double tturnor = (double.TryParse(res.Get("TTURNO"), out double aux4)) ? res.GetDouble("TTURNO") : 0.0;
+                double ttpasor = (double.TryParse(res.Get("TPASO"), out double aux5)) ? res.GetDouble("TPASO") : 0.0;
+                double ivar = (double.TryParse(res.Get("IVA"), out double aux6)) ? res.GetDouble("IVA") : 0.0;
+                double anticipor = (double.TryParse(res.Get("ANTICIPO"), out double aux7)) ? res.GetDouble("ANTICIPO") : 0.0;
+                double totalr = (double.TryParse(res.Get("TOTAL"), out double aux9)) ? res.GetDouble("TOTAL") : 0.0;
+                double aportacionr = (double.TryParse(res.Get("APORTACION"), out double aux11)) ? res.GetDouble("APORTACION") : 0.0;
+
+                dataGridViewguias.Rows[n].Cells["importename"].Value = Utilerias.Utilerias.formatCurrency(impr);
+                dataGridViewguias.Rows[n].Cells[8].Value = res.Get("COMTAQ");
+                dataGridViewguias.Rows[n].Cells[9].Value = Utilerias.Utilerias.formatCurrency(compbanr);
+                dataGridViewguias.Rows[n].Cells[10].Value = Utilerias.Utilerias.formatCurrency(aportacionr);
+                dataGridViewguias.Rows[n].Cells[11].Value = res.Get("DIESEL");
+                dataGridViewguias.Rows[n].Cells[12].Value = res.Get("CASETA");
+                dataGridViewguias.Rows[n].Cells["salidaname"].Value = Utilerias.Utilerias.formatCurrency(tsalidar);
+                dataGridViewguias.Rows[n].Cells["turnoname"].Value = Utilerias.Utilerias.formatCurrency(tturnor);
+                dataGridViewguias.Rows[n].Cells["pasoname"].Value = Utilerias.Utilerias.formatCurrency(ttpasor);
+                //dataGridViewguias.Rows[n].Cells[16].Value = res.Get("VSEDENA");
+                dataGridViewguias.Rows[n].Cells["ivaname"].Value = Utilerias.Utilerias.formatCurrency(ivar);
+                dataGridViewguias.Rows[n].Cells["gastosname"].Value = Utilerias.Utilerias.formatCurrency(anticipor);
+                dataGridViewguias.Rows[n].Cells["totalname"].Value = Utilerias.Utilerias.formatCurrency(totalr);
+                dataGridViewguias.Rows[n].Cells["sucursalname"].Value = res.Get("SUCURSAL");
+                dataGridViewguias.Rows[n].Cells["validadorname"].Value = res.Get("validador");
+                dataGridViewguias.Rows[n].Cells["chofername"].Value = res.Get("CHOFER");
+                dataGridViewguias.Rows[n].Cells["lineaname"].Value = res.Get("LINEA");
+                dataGridViewguias.Rows[n].Cells["horaname"].Value = res.Get("HORA");
+                dataGridViewguias.Rows[n].Cells["socioname"].Value = res.Get("SOCIO");
+                dataGridViewguias.Rows[n].Cells["pkname"].Value = res.Get("PK");
+
+
+                importetext += impr;
+                gastostext += anticipor;
+                tarjetastext += tturnor;
+                tarjetastext += tsalidar;
+                tarjetastext += ttpasor;
+                ivatext += ivar;
+                totaltext += totalr;
+                pagadooactivo = (string)dataGridViewguias.Rows[n].Cells[2].Value;
+                if (pagadooactivo == "PAGADA")
+                {
+                    pagarsepuede = true;
+                }
+
+            }
+
+
+
+
+
+        }
+            catch (Exception err)
+            {
+                string error = err.Message;
+        MessageBox.Show("Ocurrio un Error, intente de nuevo.");
+                string funcion = "obtenerporfolio";
+        Utilerias.LOG.write(_clase, funcion, error);
+
+
+            }
+
+}
+
+        private void textBoxfolio_KeyUp(object sender, KeyEventArgs e)
+        {
+            button4_Click(sender,e);
+        }
     }
-    }
+}
     

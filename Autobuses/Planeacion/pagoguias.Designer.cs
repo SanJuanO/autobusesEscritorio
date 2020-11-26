@@ -34,42 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pagoguias));
             this.dataGridViewguias = new System.Windows.Forms.DataGridView();
-            this.D = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ori = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.de = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Aut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.imp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dsal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.compt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.compbanco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Dies = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Case = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salidat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tpaso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tarjetaname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.I = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ANTI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sucu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Vali = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Chof = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ho = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.socio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.guia_pk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.importedname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gastosdname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ivadname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.combandname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tarjetasdname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totaldname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aportaciodname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -137,6 +101,43 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.verificationUserControl2 = new MyAttendance.VerificationUserControl();
             this.verificationUserControl1 = new MyAttendance.VerificationUserControl();
+            this.D = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ori = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.de = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Aut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dsal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.compt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.compbanco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Apor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Dies = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Case = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tar = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salidat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tpaso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tarjetaname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.I = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ANTI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sucu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Vali = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Chof = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ho = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.socio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.guia_pk = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importedname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gastosdname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ivadname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.combandname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tarjetasdname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totaldname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aportaciodname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Agregar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewguias)).BeginInit();
             this.PanelBarraTitulo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
@@ -167,7 +168,6 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewguias.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -208,7 +208,8 @@
             this.combandname,
             this.tarjetasdname,
             this.totaldname,
-            this.aportaciodname});
+            this.aportaciodname,
+            this.Agregar});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(76)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -221,13 +222,13 @@
             this.dataGridViewguias.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(69)))), ((int)(((byte)(76)))));
             this.dataGridViewguias.Location = new System.Drawing.Point(11, 370);
             this.dataGridViewguias.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewguias.MultiSelect = false;
             this.dataGridViewguias.Name = "dataGridViewguias";
             this.dataGridViewguias.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(69)))), ((int)(((byte)(76)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Empty;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewguias.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
@@ -240,269 +241,6 @@
             this.dataGridViewguias.TabIndex = 0;
             this.dataGridViewguias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewguias_CellClick);
             this.dataGridViewguias.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewguias_CellContentClick);
-            // 
-            // D
-            // 
-            this.D.HeaderText = "Dia";
-            this.D.MinimumWidth = 6;
-            this.D.Name = "D";
-            this.D.ReadOnly = true;
-            // 
-            // fol
-            // 
-            this.fol.HeaderText = "Folio";
-            this.fol.MinimumWidth = 6;
-            this.fol.Name = "fol";
-            this.fol.ReadOnly = true;
-            // 
-            // stat
-            // 
-            this.stat.HeaderText = "Estado";
-            this.stat.MinimumWidth = 6;
-            this.stat.Name = "stat";
-            this.stat.ReadOnly = true;
-            // 
-            // Ori
-            // 
-            this.Ori.HeaderText = "Origen";
-            this.Ori.MinimumWidth = 6;
-            this.Ori.Name = "Ori";
-            this.Ori.ReadOnly = true;
-            // 
-            // de
-            // 
-            this.de.HeaderText = "Destino";
-            this.de.MinimumWidth = 6;
-            this.de.Name = "de";
-            this.de.ReadOnly = true;
-            // 
-            // Aut
-            // 
-            this.Aut.HeaderText = "Autobus";
-            this.Aut.MinimumWidth = 6;
-            this.Aut.Name = "Aut";
-            this.Aut.ReadOnly = true;
-            // 
-            // bol
-            // 
-            this.bol.HeaderText = "Boletos";
-            this.bol.MinimumWidth = 6;
-            this.bol.Name = "bol";
-            this.bol.ReadOnly = true;
-            // 
-            // imp
-            // 
-            this.imp.HeaderText = "Importe";
-            this.imp.MinimumWidth = 6;
-            this.imp.Name = "imp";
-            this.imp.ReadOnly = true;
-            // 
-            // dsal
-            // 
-            this.dsal.HeaderText = "Cuota Sal";
-            this.dsal.MinimumWidth = 6;
-            this.dsal.Name = "dsal";
-            this.dsal.ReadOnly = true;
-            this.dsal.Visible = false;
-            // 
-            // compt
-            // 
-            this.compt.HeaderText = "Comp Taquilla";
-            this.compt.MinimumWidth = 6;
-            this.compt.Name = "compt";
-            this.compt.ReadOnly = true;
-            this.compt.Visible = false;
-            // 
-            // compbanco
-            // 
-            this.compbanco.HeaderText = "Comp. Banco";
-            this.compbanco.MinimumWidth = 6;
-            this.compbanco.Name = "compbanco";
-            this.compbanco.ReadOnly = true;
-            // 
-            // Apor
-            // 
-            this.Apor.HeaderText = "Aportación";
-            this.Apor.MinimumWidth = 6;
-            this.Apor.Name = "Apor";
-            this.Apor.ReadOnly = true;
-            // 
-            // Dies
-            // 
-            this.Dies.HeaderText = "Diesel";
-            this.Dies.MinimumWidth = 6;
-            this.Dies.Name = "Dies";
-            this.Dies.ReadOnly = true;
-            this.Dies.Visible = false;
-            // 
-            // Case
-            // 
-            this.Case.HeaderText = "Caseta";
-            this.Case.MinimumWidth = 6;
-            this.Case.Name = "Case";
-            this.Case.ReadOnly = true;
-            this.Case.Visible = false;
-            // 
-            // tar
-            // 
-            this.tar.HeaderText = "T. Turno";
-            this.tar.MinimumWidth = 6;
-            this.tar.Name = "tar";
-            this.tar.ReadOnly = true;
-            this.tar.Visible = false;
-            // 
-            // salidat
-            // 
-            this.salidat.HeaderText = "T. Salida";
-            this.salidat.MinimumWidth = 6;
-            this.salidat.Name = "salidat";
-            this.salidat.ReadOnly = true;
-            this.salidat.Visible = false;
-            // 
-            // tpaso
-            // 
-            this.tpaso.HeaderText = "T. Paso";
-            this.tpaso.MinimumWidth = 6;
-            this.tpaso.Name = "tpaso";
-            this.tpaso.ReadOnly = true;
-            this.tpaso.Visible = false;
-            // 
-            // tarjetaname
-            // 
-            this.tarjetaname.HeaderText = "Tarjetas";
-            this.tarjetaname.MinimumWidth = 6;
-            this.tarjetaname.Name = "tarjetaname";
-            this.tarjetaname.ReadOnly = true;
-            // 
-            // vse
-            // 
-            this.vse.HeaderText = "V. Sedena";
-            this.vse.MinimumWidth = 6;
-            this.vse.Name = "vse";
-            this.vse.ReadOnly = true;
-            this.vse.Visible = false;
-            // 
-            // I
-            // 
-            this.I.HeaderText = "IVA";
-            this.I.MinimumWidth = 6;
-            this.I.Name = "I";
-            this.I.ReadOnly = true;
-            // 
-            // ANTI
-            // 
-            this.ANTI.HeaderText = "Gastos";
-            this.ANTI.MinimumWidth = 6;
-            this.ANTI.Name = "ANTI";
-            this.ANTI.ReadOnly = true;
-            // 
-            // totalname
-            // 
-            this.totalname.HeaderText = "Total";
-            this.totalname.MinimumWidth = 6;
-            this.totalname.Name = "totalname";
-            this.totalname.ReadOnly = true;
-            // 
-            // Sucu
-            // 
-            this.Sucu.HeaderText = "Hora de Salida";
-            this.Sucu.MinimumWidth = 6;
-            this.Sucu.Name = "Sucu";
-            this.Sucu.ReadOnly = true;
-            // 
-            // Vali
-            // 
-            this.Vali.HeaderText = "Validador";
-            this.Vali.MinimumWidth = 6;
-            this.Vali.Name = "Vali";
-            this.Vali.ReadOnly = true;
-            // 
-            // Chof
-            // 
-            this.Chof.HeaderText = "Chofer";
-            this.Chof.MinimumWidth = 6;
-            this.Chof.Name = "Chof";
-            this.Chof.ReadOnly = true;
-            // 
-            // Lin
-            // 
-            this.Lin.HeaderText = "Linea";
-            this.Lin.MinimumWidth = 6;
-            this.Lin.Name = "Lin";
-            this.Lin.ReadOnly = true;
-            this.Lin.Visible = false;
-            // 
-            // ho
-            // 
-            this.ho.HeaderText = "hora";
-            this.ho.MinimumWidth = 6;
-            this.ho.Name = "ho";
-            this.ho.ReadOnly = true;
-            this.ho.Visible = false;
-            // 
-            // socio
-            // 
-            this.socio.HeaderText = "Socio";
-            this.socio.MinimumWidth = 6;
-            this.socio.Name = "socio";
-            this.socio.ReadOnly = true;
-            // 
-            // guia_pk
-            // 
-            this.guia_pk.HeaderText = "pk";
-            this.guia_pk.MinimumWidth = 6;
-            this.guia_pk.Name = "guia_pk";
-            this.guia_pk.ReadOnly = true;
-            this.guia_pk.Visible = false;
-            // 
-            // importedname
-            // 
-            this.importedname.HeaderText = "imported";
-            this.importedname.Name = "importedname";
-            this.importedname.ReadOnly = true;
-            this.importedname.Visible = false;
-            // 
-            // gastosdname
-            // 
-            this.gastosdname.HeaderText = "gastosd";
-            this.gastosdname.Name = "gastosdname";
-            this.gastosdname.ReadOnly = true;
-            this.gastosdname.Visible = false;
-            // 
-            // ivadname
-            // 
-            this.ivadname.HeaderText = "ivad";
-            this.ivadname.Name = "ivadname";
-            this.ivadname.ReadOnly = true;
-            this.ivadname.Visible = false;
-            // 
-            // combandname
-            // 
-            this.combandname.HeaderText = "comband";
-            this.combandname.Name = "combandname";
-            this.combandname.ReadOnly = true;
-            this.combandname.Visible = false;
-            // 
-            // tarjetasdname
-            // 
-            this.tarjetasdname.HeaderText = "tarjetasd";
-            this.tarjetasdname.Name = "tarjetasdname";
-            this.tarjetasdname.ReadOnly = true;
-            this.tarjetasdname.Visible = false;
-            // 
-            // totaldname
-            // 
-            this.totaldname.HeaderText = "totald";
-            this.totaldname.Name = "totaldname";
-            this.totaldname.ReadOnly = true;
-            this.totaldname.Visible = false;
-            // 
-            // aportaciodname
-            // 
-            this.aportaciodname.HeaderText = "aportaciond";
-            this.aportaciodname.Name = "aportaciodname";
-            this.aportaciodname.ReadOnly = true;
-            this.aportaciodname.Visible = false;
             // 
             // label2
             // 
@@ -1292,6 +1030,274 @@
             this.verificationUserControl1.VerificationStatusChanged += new Autobuses.StatusChangedEventHandler(this.VerificationUserControl1_VerificationStatusChanged);
             this.verificationUserControl1.BackColorChanged += new System.EventHandler(this.verificationUserControl1_BackColorChanged);
             // 
+            // D
+            // 
+            this.D.HeaderText = "Dia";
+            this.D.MinimumWidth = 6;
+            this.D.Name = "D";
+            this.D.ReadOnly = true;
+            // 
+            // fol
+            // 
+            this.fol.HeaderText = "Folio";
+            this.fol.MinimumWidth = 6;
+            this.fol.Name = "fol";
+            this.fol.ReadOnly = true;
+            // 
+            // stat
+            // 
+            this.stat.HeaderText = "Estado";
+            this.stat.MinimumWidth = 6;
+            this.stat.Name = "stat";
+            this.stat.ReadOnly = true;
+            // 
+            // Ori
+            // 
+            this.Ori.HeaderText = "Origen";
+            this.Ori.MinimumWidth = 6;
+            this.Ori.Name = "Ori";
+            this.Ori.ReadOnly = true;
+            // 
+            // de
+            // 
+            this.de.HeaderText = "Destino";
+            this.de.MinimumWidth = 6;
+            this.de.Name = "de";
+            this.de.ReadOnly = true;
+            // 
+            // Aut
+            // 
+            this.Aut.HeaderText = "Autobus";
+            this.Aut.MinimumWidth = 6;
+            this.Aut.Name = "Aut";
+            this.Aut.ReadOnly = true;
+            // 
+            // bol
+            // 
+            this.bol.HeaderText = "Boletos";
+            this.bol.MinimumWidth = 6;
+            this.bol.Name = "bol";
+            this.bol.ReadOnly = true;
+            // 
+            // imp
+            // 
+            this.imp.HeaderText = "Importe";
+            this.imp.MinimumWidth = 6;
+            this.imp.Name = "imp";
+            this.imp.ReadOnly = true;
+            // 
+            // dsal
+            // 
+            this.dsal.HeaderText = "Cuota Sal";
+            this.dsal.MinimumWidth = 6;
+            this.dsal.Name = "dsal";
+            this.dsal.ReadOnly = true;
+            this.dsal.Visible = false;
+            // 
+            // compt
+            // 
+            this.compt.HeaderText = "Comp Taquilla";
+            this.compt.MinimumWidth = 6;
+            this.compt.Name = "compt";
+            this.compt.ReadOnly = true;
+            this.compt.Visible = false;
+            // 
+            // compbanco
+            // 
+            this.compbanco.HeaderText = "Comp. Banco";
+            this.compbanco.MinimumWidth = 6;
+            this.compbanco.Name = "compbanco";
+            this.compbanco.ReadOnly = true;
+            // 
+            // Apor
+            // 
+            this.Apor.HeaderText = "Aportación";
+            this.Apor.MinimumWidth = 6;
+            this.Apor.Name = "Apor";
+            this.Apor.ReadOnly = true;
+            // 
+            // Dies
+            // 
+            this.Dies.HeaderText = "Diesel";
+            this.Dies.MinimumWidth = 6;
+            this.Dies.Name = "Dies";
+            this.Dies.ReadOnly = true;
+            this.Dies.Visible = false;
+            // 
+            // Case
+            // 
+            this.Case.HeaderText = "Caseta";
+            this.Case.MinimumWidth = 6;
+            this.Case.Name = "Case";
+            this.Case.ReadOnly = true;
+            this.Case.Visible = false;
+            // 
+            // tar
+            // 
+            this.tar.HeaderText = "T. Turno";
+            this.tar.MinimumWidth = 6;
+            this.tar.Name = "tar";
+            this.tar.ReadOnly = true;
+            this.tar.Visible = false;
+            // 
+            // salidat
+            // 
+            this.salidat.HeaderText = "T. Salida";
+            this.salidat.MinimumWidth = 6;
+            this.salidat.Name = "salidat";
+            this.salidat.ReadOnly = true;
+            this.salidat.Visible = false;
+            // 
+            // tpaso
+            // 
+            this.tpaso.HeaderText = "T. Paso";
+            this.tpaso.MinimumWidth = 6;
+            this.tpaso.Name = "tpaso";
+            this.tpaso.ReadOnly = true;
+            this.tpaso.Visible = false;
+            // 
+            // tarjetaname
+            // 
+            this.tarjetaname.HeaderText = "Tarjetas";
+            this.tarjetaname.MinimumWidth = 6;
+            this.tarjetaname.Name = "tarjetaname";
+            this.tarjetaname.ReadOnly = true;
+            // 
+            // vse
+            // 
+            this.vse.HeaderText = "V. Sedena";
+            this.vse.MinimumWidth = 6;
+            this.vse.Name = "vse";
+            this.vse.ReadOnly = true;
+            this.vse.Visible = false;
+            // 
+            // I
+            // 
+            this.I.HeaderText = "IVA";
+            this.I.MinimumWidth = 6;
+            this.I.Name = "I";
+            this.I.ReadOnly = true;
+            // 
+            // ANTI
+            // 
+            this.ANTI.HeaderText = "Gastos";
+            this.ANTI.MinimumWidth = 6;
+            this.ANTI.Name = "ANTI";
+            this.ANTI.ReadOnly = true;
+            // 
+            // totalname
+            // 
+            this.totalname.HeaderText = "Total";
+            this.totalname.MinimumWidth = 6;
+            this.totalname.Name = "totalname";
+            this.totalname.ReadOnly = true;
+            // 
+            // Sucu
+            // 
+            this.Sucu.HeaderText = "Hora de Salida";
+            this.Sucu.MinimumWidth = 6;
+            this.Sucu.Name = "Sucu";
+            this.Sucu.ReadOnly = true;
+            // 
+            // Vali
+            // 
+            this.Vali.HeaderText = "Validador";
+            this.Vali.MinimumWidth = 6;
+            this.Vali.Name = "Vali";
+            this.Vali.ReadOnly = true;
+            // 
+            // Chof
+            // 
+            this.Chof.HeaderText = "Chofer";
+            this.Chof.MinimumWidth = 6;
+            this.Chof.Name = "Chof";
+            this.Chof.ReadOnly = true;
+            // 
+            // Lin
+            // 
+            this.Lin.HeaderText = "Linea";
+            this.Lin.MinimumWidth = 6;
+            this.Lin.Name = "Lin";
+            this.Lin.ReadOnly = true;
+            // 
+            // ho
+            // 
+            this.ho.HeaderText = "hora";
+            this.ho.MinimumWidth = 6;
+            this.ho.Name = "ho";
+            this.ho.ReadOnly = true;
+            this.ho.Visible = false;
+            // 
+            // socio
+            // 
+            this.socio.HeaderText = "Socio";
+            this.socio.MinimumWidth = 6;
+            this.socio.Name = "socio";
+            this.socio.ReadOnly = true;
+            // 
+            // guia_pk
+            // 
+            this.guia_pk.HeaderText = "pk";
+            this.guia_pk.MinimumWidth = 6;
+            this.guia_pk.Name = "guia_pk";
+            this.guia_pk.ReadOnly = true;
+            this.guia_pk.Visible = false;
+            // 
+            // importedname
+            // 
+            this.importedname.HeaderText = "imported";
+            this.importedname.Name = "importedname";
+            this.importedname.ReadOnly = true;
+            this.importedname.Visible = false;
+            // 
+            // gastosdname
+            // 
+            this.gastosdname.HeaderText = "gastosd";
+            this.gastosdname.Name = "gastosdname";
+            this.gastosdname.ReadOnly = true;
+            this.gastosdname.Visible = false;
+            // 
+            // ivadname
+            // 
+            this.ivadname.HeaderText = "ivad";
+            this.ivadname.Name = "ivadname";
+            this.ivadname.ReadOnly = true;
+            this.ivadname.Visible = false;
+            // 
+            // combandname
+            // 
+            this.combandname.HeaderText = "comband";
+            this.combandname.Name = "combandname";
+            this.combandname.ReadOnly = true;
+            this.combandname.Visible = false;
+            // 
+            // tarjetasdname
+            // 
+            this.tarjetasdname.HeaderText = "tarjetasd";
+            this.tarjetasdname.Name = "tarjetasdname";
+            this.tarjetasdname.ReadOnly = true;
+            this.tarjetasdname.Visible = false;
+            // 
+            // totaldname
+            // 
+            this.totaldname.HeaderText = "totald";
+            this.totaldname.Name = "totaldname";
+            this.totaldname.ReadOnly = true;
+            this.totaldname.Visible = false;
+            // 
+            // aportaciodname
+            // 
+            this.aportaciodname.HeaderText = "aportaciond";
+            this.aportaciodname.Name = "aportaciodname";
+            this.aportaciodname.ReadOnly = true;
+            this.aportaciodname.Visible = false;
+            // 
+            // Agregar
+            // 
+            this.Agregar.HeaderText = "Agregar";
+            this.Agregar.Name = "Agregar";
+            this.Agregar.ReadOnly = true;
+            // 
             // pagoguias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1449,5 +1455,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tarjetasdname;
         private System.Windows.Forms.DataGridViewTextBoxColumn totaldname;
         private System.Windows.Forms.DataGridViewTextBoxColumn aportaciodname;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Agregar;
     }
 }

@@ -250,7 +250,7 @@
             this.dataGridViewUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewUsuarios.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridViewUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewUsuarios.Size = new System.Drawing.Size(1250, 420);
+            this.dataGridViewUsuarios.Size = new System.Drawing.Size(1250, 476);
             this.dataGridViewUsuarios.TabIndex = 240;
             this.dataGridViewUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.asignado);
             this.dataGridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Check);
@@ -1450,7 +1450,7 @@
             this.textBoxtotal.MaxLength = 41;
             this.textBoxtotal.Name = "textBoxtotal";
             this.textBoxtotal.ReadOnly = true;
-            this.textBoxtotal.Size = new System.Drawing.Size(30, 23);
+            this.textBoxtotal.Size = new System.Drawing.Size(41, 23);
             this.textBoxtotal.TabIndex = 306;
             this.textBoxtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 

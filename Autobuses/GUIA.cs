@@ -1659,38 +1659,38 @@ namespace Autobuses
         async Task RunAsync(NotificationDataModel data)
         {
 
-            var myContent = JsonNet.Serialize(data);
-            var stringContent = new StringContent(myContent, UnicodeEncoding.UTF8, "application/json");
+            //var myContent = JsonNet.Serialize(data);
+            //var stringContent = new StringContent(myContent, UnicodeEncoding.UTF8, "application/json");
 
-            HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("https://localhost:44333/api/SendPushNotificationPartners/");
-            // client.BaseAddress = new Uri("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/");
+            //HttpClient client = new HttpClient();
+            ////client.BaseAddress = new Uri("https://localhost:44333/api/SendPushNotificationPartners/");
+            //// client.BaseAddress = new Uri("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/");
 
-             client.BaseAddress = new Uri("https://appis.atah.online/api/SendPushNotificationPartners/");
+            //client.BaseAddress = new Uri("https://appis.atah.online/api/SendPushNotificationPartners/");
 
 
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            try
-            {
-                var responsevar = "";
-                HttpResponseMessage response = await client.PostAsync("https://appis.atah.online/api/SendPushNotificationPartners/", stringContent);
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            //try
+            //{
+            //    var responsevar = "";
+            //    HttpResponseMessage response = await client.PostAsync("https://appis.atah.online/api/SendPushNotificationPartners/", stringContent);
 
-               // HttpResponseMessage response = await client.PostAsync("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/", stringContent);
-                //HttpResponseMessage response = await client.PostAsync("https://localhost:44333/api/SendPushNotificationPartners/", stringContent);
-                if (response.IsSuccessStatusCode)
-                {
-                    responsevar = await response.Content.ReadAsStringAsync();
-                }
-                Respuesta res = JsonNet.Deserialize<Respuesta>(responsevar);
+            //    // HttpResponseMessage response = await client.PostAsync("https://appi-atah.azurewebsites.net/api/SendPushNotificationPartners/", stringContent);
+            //    //HttpResponseMessage response = await client.PostAsync("https://localhost:44333/api/SendPushNotificationPartners/", stringContent);
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        responsevar = await response.Content.ReadAsStringAsync();
+            //    }
+            //    Respuesta res = JsonNet.Deserialize<Respuesta>(responsevar);
 
-              //  MessageBox.Show(res.mensaje);
-            }
-            catch (Exception e)
-            {
-                string error = e.Message;
-                MessageBox.Show("Error con el servicio intente màs tarde");
-            }
+            //    //  MessageBox.Show(res.mensaje);
+            //}
+            //catch (Exception e)
+            //{
+            //    string error = e.Message;
+            //    MessageBox.Show("Error con el servicio intente màs tarde");
+            //}
 
         }
         
